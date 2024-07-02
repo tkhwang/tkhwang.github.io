@@ -52,7 +52,9 @@ printPerson({
 });
 ```
 
-이는
+#### 나의 해석
+
+이는 variable 을 사용하는 경우에 excess property 가 있는 경우는 unintentional error로 생각하는 반면 object literal을 사용하는 경우에는 좀더 직접적인 상황이므로 excess property가 있으면 intentional error 로 생각하는 것이 아닐까 한다.
 
 ## Reference
 
