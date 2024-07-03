@@ -1,8 +1,8 @@
 ---
 author: tkhwang
-pubDatetime: 2024-07-04T00:00:00.000Z
+pubDatetime: 2024-07-03T00:00:00.000Z
 title: "[typescript] 객체 타입 유니언"
-slug: 2024-07-04-typescript-object-type-union
+slug: 2024-07-03-typescript-object-type-union
 featured: false
 tags:
   - typescript
