@@ -48,6 +48,8 @@ poem.pages; // Error
 
 - 타입 가드
   - `in` 연산자
+  - `typeof` 연산자
+  - `instanceof` 연산자
 - `satisfies` 연산자
 
 ```typescript
