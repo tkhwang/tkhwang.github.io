@@ -1,8 +1,8 @@
 ---
 author: tkhwang
 pubDatetime: 2024-07-03T00:00:00.000Z
-title: "[typescript] 객체 타입 유니언"
-slug: 2024-07-03-typescript-object-type-union
+title: "[typescript] 객체 타입 유니언 사용법"
+slug: 2024-07-03-typescript-how-to-use-object-type-union
 featured: false
 tags:
   - typescript
@@ -30,11 +30,15 @@ const poem: Poem =
     : { name: "Her Kind", rhymes: true };
 ```
 
+## 공통 속성
+
 객체 타입 유니언은 해당 타입의 **공통된 속성에 대한 접근**만 허용된다.
 
 ```typescript
 poem.name; // OK
 ```
+
+## 공통되지 않은 속성
 
 공통되지 않은 속성에 접근하면 에러가 발생한다.
 
@@ -42,9 +46,11 @@ poem.name; // OK
 poem.pages; // Error
 ```
 
-## 타입 내로잉 Typing narrowing
+## 객체 타입 유니언 사용법 : 타입 내로잉 Typing narrowing
 
-이를 위해서는 **타입 내로잉 typing narrowing**을 통해서 특정 타입으로 좁혀야 해당 타입에 존재하는 속성을 접근할 수 있다.
+공통되지 않은 속성에 대해서는 직접 접근이 되지 않는다.
+
+따라서 이를 접근하기 위해서는 **타입 내로잉 typing narrowing**을 통해서 특정 타입으로 좁혀야 해당 타입에 존재하는 속성을 접근할 수 있다.
 
 - 타입 가드
   - `in` 연산자
