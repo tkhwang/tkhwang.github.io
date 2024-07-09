@@ -66,6 +66,26 @@ if ("pages" in poem) {
 }
 ```
 
+## Discriminated Unions
+
+개인적으로는 Union 사용 시에는 가능하다면 **Discriminated Unions**을 즐겨 사용한다.
+
+서로 shape 이 너무 다르면 type narrowing 하는 것이 쉽지 않을 수 있으므로, 공통된 필드를 discriminator 로 구분할 있도록 서로 다른 값을 할당한 union 을 사용하는 것이 좋다.
+
+```typescript
+interface MessageEvent {
+  type: "message"; // discriminator
+  content: string;
+  senderId: string;
+}
+
+interface AlarmEvent {
+  type: "alarm"; // discriminator
+  severity: "low" | "medium" | "high";
+  timestamp: Date;
+}
+```
+
 ## Reference
 
 - [러닝 타입스크립트](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=307683870&start=slayer) : 4장 객체
