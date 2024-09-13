@@ -1,8 +1,8 @@
 ---
 author: tkhwang
-pubDatetime: 2024-07-03T03:00:00.000Z
+pubDatetime: 2024-07-02T00:00:00.000Z
 title: "[typescript] optional field 와 mandatory undefined union field 의 차이점"
-slug: 2024-07-03-typescript-option-vs-mandatory-undefined
+slug: 2024-07-02-typescript-option-vs-mandatory-undefined
 featured: false
 tags:
   - typescript
