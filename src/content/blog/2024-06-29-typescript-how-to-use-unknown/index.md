@@ -3,7 +3,7 @@ title: "[typescript] unknown 사용법"
 slug: "2024-06-29-typescript-how-to-use-unknown"
 description: "any 대신에 unknown 을 쓰라고 하는데, 어떻게 써야해요 ?"
 tags: ['typescript']
-pubDate: 'Jun 29 2024'
+pubDate: 'Mar 29 2024'
 # coverImage: './blog-placeholder-3.jpg'
 ---
 

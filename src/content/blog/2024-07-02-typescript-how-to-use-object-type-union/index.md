@@ -1,9 +1,9 @@
 ---
 title: '[typescript] 객체 타입 유니언 사용법'
-slug: '2024-07-03-typescript-how-to-use-object-type-union'
+slug: '2024-07-02-typescript-how-to-use-object-type-union'
 description: '객체 타입 유니언에 공통되지 않은 속성에 접근한다면 ?'
 tags: ['typescript']
-pubDate: 'Sep 3 2024'
+pubDate: 'Jul 02 2024'
 # coverImage: './blog-placeholder-3.jpg'
 ---
 

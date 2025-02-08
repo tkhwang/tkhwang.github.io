@@ -3,7 +3,7 @@ title: '[typescript] optional field 와 mandatory undefined union field 의 차�
 slug: '2024-07-02-typescript-option-vs-mandatory-undefined'
 description: 'field?: string 과 field: string | undefined 가 다르다구 ?'
 tags: ['typescript']
-pubDate: 'Jul 12 2024'
+pubDate: 'Jul 02 2024'
 # coverImage: './blog-placeholder-3.jpg'
 ---
 
