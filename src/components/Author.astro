@@ -11,7 +11,7 @@ const { picSize } = Astro.props;
 
 <div class='flex gap-4 items-center leading-tight not-prose'>
 	<a
-		href='https://github.com/syakirurahman'
+		href='https://github.com/tkhwang'
 		target='_blank'
 		rel='noopener noreferrer'
 		class:list={[
@@ -21,7 +21,12 @@ const { picSize } = Astro.props;
 			{ 'w-[90px] h-[90px]': picSize === 'lg' }
 		]}
 	>
-		<Image src={Ava} alt='Muhammad Syakirurohman' />
+		<Image
+			src='https://1.gravatar.com/avatar/442a1f9fb6f731f671d655575ebba466e1e0c4d9d0ea369c3fe7460b02cdb72e'
+			alt='tkhwang'
+			width={90}
+			height={90}
+		/>
 	</a>
 	<div>
 		<div>
@@ -31,9 +36,9 @@ const { picSize } = Astro.props;
 				target='_blank'
 				rel='noopener noreferrer'
 			>
-				Muhammad Syakirurohman
+				tkhwang
 			</a>
 		</div>
-		<small class='avatar__subtitle'>Frontend Engineer</small>
+		<small class='avatar__subtitle'>Fullstack Engineer</small>
 	</div>
 </div>
