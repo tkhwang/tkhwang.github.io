@@ -12,6 +12,9 @@ const { title, description, image } = Astro.props;
 <html lang='en'>
 	<head>
 		<BaseHead title={title} description={description} image={image} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	</head>
 	<body
 		class="bg-white dark:bg-zinc-900 dark:text-zinc-100 pt-16 sm:pt-0"
@@ -39,3 +42,13 @@ const { title, description, image } = Astro.props;
     }
 	</body>
 </html>
+
+<style is:global>
+	:root {
+		--font-family-base: 'Space Grotesk', system-ui, sans-serif;
+	}
+
+	body {
+		font-family: var(--font-family-base);
+	}
+</style>
