@@ -7,3 +7,14 @@
 		font-size: 0.875rem;
 	}
 }
+
+body {
+	font-size: 1.125rem; /* 18px */
+	line-height: 1.75;
+}
+
+/* 글 본문 영역만 타겟팅 */
+article p {
+	font-size: 1.125rem; /* 18px */
+	line-height: 1.75;
+}
