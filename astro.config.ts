@@ -1,17 +1,17 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import expressiveCode from 'astro-expressive-code';
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
-import spectre from './package/src';
+import expressiveCode from "astro-expressive-code";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+import spectre from "./package/src";
 
-import node from '@astrojs/node';
-import { spectreDark } from './src/ec-theme';
+import node from "@astrojs/node";
+import { spectreDark } from "./src/ec-theme";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://spectre.louisescher.dev',
-  output: 'static',
+  site: "https://tkhwang.github.io/",
+  output: "static",
   integrations: [
     expressiveCode({
       themes: [spectreDark],
@@ -19,34 +19,35 @@ export default defineConfig({
     mdx(),
     sitemap(),
     spectre({
-      name: 'Spectre',
+      name: "tkhwang.github.io",
       openGraph: {
         home: {
-          title: 'Spectre',
-          description: 'A minimalistic theme for Astro.'
+          title: "tkhwang.github.io",
+          description: "personal tech blog",
         },
         blog: {
-          title: 'Blog',
-          description: 'News and guides for Spectre.'
+          title: "Blog",
+          description:
+            "This is my little thoughts 🤔 and journey 💻 into software development.",
         },
         projects: {
-          title: 'Projects'
-        }
+          title: "Projects",
+        },
       },
       giscus: {
-        repository: 'louisescher/spectre',
-        repositoryId: 'R_kgDONjm3ig',
-        category: 'General',
-        categoryId: 'DIC_kwDONjm3is4ClmBF',
-        mapping: 'pathname',
+        repository: "tkhwang/tkhwang-blog-giscus-comments",
+        repositoryId: "R_kgDOHOPQOQ",
+        category: "Announcements",
+        categoryId: "DIC_kwDOHOPQOc4COvJg",
+        mapping: "pathname",
         strict: true,
         reactionsEnabled: true,
         emitMetadata: false,
-        lang: 'en',
-      }
-    })
+        lang: "en",
+      },
+    }),
   ],
   adapter: node({
-    mode: 'standalone'
-  })
+    mode: "standalone",
+  }),
 });
