@@ -3,17 +3,32 @@
     "id": 1,
     "icon": {
       "type": "lucide",
-      "name": "cake"
+      "name": "code"
     },
-    "text": "1 year old"
+    "text": "Typescript | Javascdript"
   },
   {
     "id": 2,
     "icon": {
       "type": "lucide",
-      "name": "earth"
+      "name": "server"
     },
-    "type": "lucide",
-    "text": "Made in Germany"
+    "text": "Nest.js | Express"
+  },
+  {
+    "id": 3,
+    "icon": {
+      "type": "lucide",
+      "name": "layout"
+    },
+    "text": "React.js | Next.js"
+  },
+  {
+    "id": 4,
+    "icon": {
+      "type": "lucide",
+      "name": "smartphone"
+    },
+    "text": "React Native"
   }
 ]
