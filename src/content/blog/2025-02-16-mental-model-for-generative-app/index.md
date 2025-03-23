@@ -1,8 +1,8 @@
 ---
 title: '생성형 AI를 이용한 서비스 이해를 위한 멘탈 모델'
-slug: '22025-02-16-mental-model-for-generative-app'
+slug: '2025-02-16-mental-model-for-generative-app'
 description: ''
-tags: ['talk']
+tags: ['ai']
 pubDate: 'Feb 16 2025'
 coverImage: './mental-model-generative-app.png'
 ---
