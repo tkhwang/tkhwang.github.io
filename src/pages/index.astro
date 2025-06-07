@@ -1,0 +1,19 @@
+---
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title={SITE_TITLE}
+  description={SITE_DESCRIPTION}
+  className="flex h-svh max-w-sm flex-col justify-center"
+>
+  <main class="space-y-4">
+    <p>
+      This is my little thoughts 🤔 and journey 💻 into software development.
+    </p>
+    <p>
+      Please check out my <a href="/posts">posts</a> for more details.
+    </p>
+  </main>
+</Layout>
