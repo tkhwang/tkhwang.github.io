@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
+import Giscus from "../../components/Giscus.astro";
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../lib/utils";
 
@@ -31,5 +32,8 @@ const { Content } = await post.render();
     <article>
       <Content />
     </article>
+    <div class="mt-16">
+      <Giscus />
+    </div>
   </main>
 </Layout>
