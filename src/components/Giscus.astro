@@ -23,3 +23,59 @@
     crossorigin="anonymous"
     async></script>
 </section>
+
+<script>
+  function setGiscusTheme() {
+    const iframe = document.querySelector<HTMLIFrameElement>(
+      "iframe.giscus-frame",
+    );
+    if (!iframe) return;
+
+    const theme = document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
+
+    iframe.contentWindow?.postMessage(
+      { giscus: { setConfig: { theme } } },
+      "https://giscus.app",
+    );
+  }
+
+  // 초기 테마 설정
+  const initGiscus = () => {
+    // Giscus가 로드될 때까지 대기
+    const observer = new MutationObserver((mutations, obs) => {
+      const iframe = document.querySelector("iframe.giscus-frame");
+      if (iframe) {
+        setGiscusTheme();
+        obs.disconnect();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  };
+
+  // 테마 변경 감지
+  const observeTheme = () => {
+    const observer = new MutationObserver(() => {
+      setGiscusTheme();
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  };
+
+  initGiscus();
+  observeTheme();
+
+  // Astro 페이지 전환 시에도 동작하도록
+  document.addEventListener("astro:after-swap", () => {
+    initGiscus();
+    observeTheme();
+  });
+</script>
