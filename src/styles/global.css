@@ -44,7 +44,28 @@
       @apply whitespace-nowrap rounded border bg-zinc-200/50 px-1 py-0.5 font-mono text-sm font-medium text-black dark:border-zinc-700 dark:bg-zinc-800/50 dark:text-white;
     }
     pre:has(code) {
-      @apply my-4 max-h-[600px] overflow-auto rounded-lg border p-4 font-mono text-sm font-medium dark:border-zinc-700;
+      @apply relative my-6 max-h-[600px] overflow-x-auto font-mono text-sm;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      background: theme("colors.zinc.50");
+    }
+    html.dark pre:has(code) {
+      background: theme("colors.zinc.950");
+    }
+    pre:has(code) > code {
+      display: block;
+      width: 100%;
+      max-width: 42rem; /* 본문(max-w-xl=36rem)보다 6rem 더 넓게 */
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    @media (max-width: 768px) {
+      pre:has(code) > code {
+        max-width: 100%;
+        padding: 0 1rem;
+      }
     }
     img {
       @apply my-4 rounded-lg border dark:border-zinc-700;
