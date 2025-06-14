@@ -12,18 +12,38 @@ const posts = collection.sort(
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <main>
-    <ul class="flex flex-col gap-1.5">
+    <ul class="flex flex-col gap-4">
       {
         posts.map((post) => (
           <li>
-            <a
-              href={`/posts/${post.slug}`}
-              class="group flex justify-between gap-3"
-            >
-              <span class="group-hover:underline">{post.data.title}</span>
-              <span class="text-nowrap text-zinc-500">
-                {formatDate(post.data.date)}
-              </span>
+            <a href={`/posts/${post.slug}`} class="group flex gap-6">
+              {/* Left column - right aligned */}
+              <div class="flex min-w-[5rem] flex-col items-end text-right">
+                <span class="whitespace-nowrap text-sm text-zinc-500">
+                  {formatDate(post.data.date)}
+                </span>
+                {post.data.tags && (
+                  <div class="mt-1 flex flex-wrap justify-end gap-1">
+                    {post.data.tags.map((tag: string) => (
+                      <span class="rounded bg-gray-100 px-2 py-1 text-xs text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Right column - left aligned */}
+              <div class="flex flex-1 flex-col">
+                <span class="font-medium text-gray-900 group-hover:underline dark:text-gray-100">
+                  {post.data.title}
+                </span>
+                {post.data.description && (
+                  <span class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    {post.data.description}
+                  </span>
+                )}
+              </div>
             </a>
           </li>
         ))

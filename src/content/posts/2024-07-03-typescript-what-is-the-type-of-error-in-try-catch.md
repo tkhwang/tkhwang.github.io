@@ -1,7 +1,8 @@
 ---
 title: "[typescript] try catch 에서 error type 은 ?"
-description: "typescript 에서 try { } catch (error) { } 에서는 error가 Error 타입이 아니라구 ?"
+description: "TypeScript try-catch error 타입과 타입 내로잉 활용법"
 date: "Jul 03 2024"
+tags: ["typescript"]
 ---
 
 개인적으로 타입스크립트를 쓰면서 이상한 것 중의 하나가 try catch 에서 error 타입이다.

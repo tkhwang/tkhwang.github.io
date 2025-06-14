@@ -1,7 +1,8 @@
 ---
 title: "[AI] 생성형 AI를 이용한 서비스 이해를 위한 멘탈 모델"
-description: ""
+description: "웹 개발자를 위한 생성형 AI 서비스 아키텍처 멘탈 모델"
 date: "Feb 16 2025"
+tags: ["ai"]
 ---
 
 ![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/02/mental-model-generative-app.png?raw=true)
