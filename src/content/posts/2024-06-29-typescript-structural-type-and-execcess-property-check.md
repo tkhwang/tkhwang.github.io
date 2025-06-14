@@ -2,6 +2,7 @@
 title: "[typescript] 구조적 타이핑 structural typing과 초과 속성 검사 Excess property check"
 description: "TypeScript 구조적 타이핑과 초과 속성 검사의 이해"
 date: "Mar 29 2024"
+tags: ["typescript"]
 ---
 
 타입스크립트의 다른 typed language 와 다른 점은 `구조적 타이핑 (structural type system)`을 적용한다는 것이다.

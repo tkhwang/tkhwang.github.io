@@ -2,6 +2,7 @@
 title: "[typescript] 객체 타입 유니언 사용법"
 description: "TypeScript 객체 타입 유니언의 사용법과 타입 내로잉을 통한 속성 접근 방법"
 date: "Jul 02 2024"
+tags: ["typescript"]
 ---
 
 객체 타입 역시 유니언으로 사용할 수 있다.

@@ -2,6 +2,7 @@
 title: "[typescript] unknown 사용법"
 description: "any 대신에 unknown 을 쓰라고 하는데, 어떻게 써야해요 ?"
 date: "Mar 29 2024"
+tags: ["typescript"]
 ---
 
 `any` 는 부득이하게 사용하는 경우가 있는데, `unknown` 을 제대로 사용해보지 못한 것 같다.
