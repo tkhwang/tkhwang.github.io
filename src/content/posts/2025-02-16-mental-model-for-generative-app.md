@@ -1,5 +1,5 @@
 ---
-title: "생성형 AI를 이용한 서비스 이해를 위한 멘탈 모델"
+title: "[AI] 생성형 AI를 이용한 서비스 이해를 위한 멘탈 모델"
 description: ""
 date: "Feb 16 2025"
 ---
