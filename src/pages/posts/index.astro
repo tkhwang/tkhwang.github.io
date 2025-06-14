@@ -15,11 +15,11 @@ const posts = collection.sort(
     <ul class="flex flex-col gap-4">
       {
         posts.map((post) => (
-          <li key={post.slug}>
+          <li>
             <a href={`/posts/${post.slug}`} class="group flex gap-6">
               {/* Left column - right aligned */}
-              <div class="flex min-w-20 flex-col items-end text-right">
-                <span class="text-nowrap text-sm text-zinc-500">
+              <div class="flex min-w-[5rem] flex-col items-end text-right">
+                <span class="whitespace-nowrap text-sm text-zinc-500">
                   {formatDate(post.data.date)}
                 </span>
                 {post.data.tags && (
