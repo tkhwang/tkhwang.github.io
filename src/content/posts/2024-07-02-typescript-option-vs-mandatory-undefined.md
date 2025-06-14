@@ -1,6 +1,6 @@
 ---
 title: "[typescript] optional field 와 mandatory undefined union field 의 차이점"
-description: "field?: string 과 field: string | undefined 가 다르다구 ?"
+description: "TypeScript optional과 mandatory undefined union field 비교"
 date: "Jul 02 2024"
 ---
 

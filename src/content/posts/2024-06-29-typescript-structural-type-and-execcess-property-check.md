@@ -1,6 +1,6 @@
 ---
 title: "[typescript] 구조적 타이핑 structural typing과 초과 속성 검사 Excess property check"
-description: ""
+description: "TypeScript 구조적 타이핑과 초과 속성 검사의 이해"
 date: "Mar 29 2024"
 ---
 

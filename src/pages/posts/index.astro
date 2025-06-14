@@ -8,26 +8,48 @@ const collection = await getCollection("posts");
 const posts = collection.sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
+console.log("TCL: posts", posts);
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <main>
-    <ul class="flex flex-col gap-1.5">
-      {
-        posts.map((post) => (
-          <li>
-            <a
-              href={`/posts/${post.slug}`}
-              class="group flex justify-between gap-3"
-            >
-              <span class="group-hover:underline">{post.data.title}</span>
-              <span class="text-nowrap text-zinc-500">
+    <ul class="flex flex-col gap-4">
+      {posts.map((post) => (
+        <li key={post.slug}>
+          <a
+            href={`/posts/${post.slug}`}
+            class="group flex gap-6"
+          >
+            {/* Left column - right aligned */}
+            <div class="flex flex-col items-end text-right min-w-32">
+              <span class="text-nowrap text-zinc-500 text-sm">
                 {formatDate(post.data.date)}
               </span>
-            </a>
-          </li>
-        ))
-      }
+              {post.data.tags && (
+                <div class="flex flex-wrap gap-1 justify-end mt-1">
+                  {post.data.tags.map((tag: string) => (
+                    <span class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+            
+            {/* Right column - left aligned */}
+            <div class="flex flex-col flex-1">
+              <span class="group-hover:underline font-medium text-gray-900 dark:text-gray-100">
+                {post.data.title}
+              </span>
+              {post.data.description && (
+                <span class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  {post.data.description}
+                </span>
+              )}
+            </div>
+          </a>
+        </li>
+      ))}
     </ul>
   </main>
 </Layout>

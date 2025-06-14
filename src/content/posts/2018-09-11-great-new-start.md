@@ -1,6 +1,6 @@
 ---
 title: "그래, 다시 시작해보자..."
-description: ""
+description: "새로운 시작을 향한 다짐"
 date: "Sep 11 2018"
 ---
 
