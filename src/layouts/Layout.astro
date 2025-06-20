@@ -24,9 +24,12 @@ const {
 <html lang="en">
   <head>
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Global Metadata -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -72,20 +75,27 @@ const {
     <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
     <!-- Google tag (gtag.js) -->
-    <script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-TYN17JDQZ5"></script>
+    <script
+      is:inline
+      src="https://www.googletagmanager.com/gtag/js?id=G-TYN17JDQZ5"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-TYN17JDQZ5');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-TYN17JDQZ5");
     </script>
 
     <ViewTransitions />
   </head>
   <body
-    class={cn("font-sans text-zinc-900 antialiased transition-colors dark:bg-zinc-900 dark:text-zinc-200", className)}
+    class={cn(
+      "font-sans text-zinc-900 antialiased transition-colors dark:bg-zinc-900 dark:text-zinc-200",
+      className,
+    )}
   >
-    <div class="max-w-xl mx-auto p-4">
+    <div class="mx-auto max-w-3xl p-4">
       <Header />
       <slot />
     </div>
