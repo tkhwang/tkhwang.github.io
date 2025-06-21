@@ -85,7 +85,10 @@ import Layout from "../layouts/Layout.astro";
         href="/posts"
         class="col-span-1 flex items-center justify-center border-b border-r border-gray-200 bg-gray-900/90 p-6 text-white transition-all hover:bg-gray-800 dark:border-gray-700 dark:bg-black/90 dark:hover:bg-gray-900"
       >
-        <span class="text-sm font-medium">포스트 읽기</span>
+        <span class="text-base font-medium sm:whitespace-nowrap">
+          <span class="block text-center sm:hidden">포스트<br />읽 기</span>
+          <span class="hidden sm:inline">포스트 읽기</span>
+        </span>
       </a>
     </div>
   </div>
