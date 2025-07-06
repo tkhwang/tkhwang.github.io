@@ -3,8 +3,8 @@
 
 export const SITE_URL = "https://tkhwang.github.io";
 export const SITE_TITLE =
-  "tkhwang's tech blog: 나쁜 일은 한 순간에 일어나고, 좋은 일은 오래 걸린다";
+  "tkhwang's tech blog | 변하는 기술 속에서 변하지 않는 개발의 지혜";
 export const SITE_DESCRIPTION =
-  "이곳은 변하는 기술 속에서 변하지 않는 개발의 지혜를 기록하는 공간입니다.";
+  "기술은 빠르게 변하지만, 좋은 코드를 만드는 원칙은 변하지 않습니다. 변하는 기술 속에서 변하지 않는 개발의 지혜를 찾아가는 과정을 기록합니다.";
 
 export const EMAIL = "tkhwang@gmail.com";
