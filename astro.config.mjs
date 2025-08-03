@@ -13,16 +13,7 @@ export default defineConfig({
   site: SITE_URL,
   integrations: [
     mdx({
-      extendMarkdownConfig: true,
-      rehypePlugins: [
-        [
-          rehypeMermaid,
-          {
-            strategy: "img-svg",
-            dark: true,
-          },
-        ],
-      ],
+      extendMarkdownConfig: true, // inherits rehypeMermaid from `markdown`
     }),
     sitemap(),
     tailwind(),
