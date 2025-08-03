@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
+import rehypeMermaid from "rehype-mermaid";
 
 import sitemap from "@astrojs/sitemap";
 
@@ -10,7 +11,22 @@ import { SITE_URL } from "./src/consts";
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
-  integrations: [mdx(), sitemap(), tailwind()],
+  integrations: [
+    mdx({
+      extendMarkdownConfig: true,
+      rehypePlugins: [
+        [
+          rehypeMermaid,
+          {
+            strategy: "img-svg",
+            dark: true,
+          },
+        ],
+      ],
+    }),
+    sitemap(),
+    tailwind(),
+  ],
   markdown: {
     shikiConfig: {
       themes: {
@@ -18,5 +34,14 @@ export default defineConfig({
         dark: "catppuccin-mocha",
       },
     },
+    rehypePlugins: [
+      [
+        rehypeMermaid,
+        {
+          strategy: "img-svg",
+          dark: true,
+        },
+      ],
+    ],
   },
 });
