@@ -51,25 +51,54 @@ const { code, className } = Astro.props;
     });
 
     // Render all mermaid diagrams
-    document.querySelectorAll(".mermaid").forEach((element) => {
+    document.querySelectorAll(".mermaid").forEach((element, index) => {
       const code = element.getAttribute("data-mermaid");
-      if (code) {
+      if (code && !element.getAttribute("data-processed")) {
+        element.setAttribute("data-processed", "true");
         element.innerHTML = "";
-        mermaid.render(`mermaid-${Math.random().toString(36).substring(2, 11)}`, code).then(({ svg }) => {
+        const id = `mermaid-${Date.now()}-${index}`;
+        mermaid.render(id, code).then(({ svg }) => {
           element.innerHTML = svg;
+        }).catch((error) => {
+          console.error('Failed to render Mermaid diagram:', error);
+          element.innerHTML = `<pre><code>${code}</code></pre>`;
+          element.removeAttribute("data-processed");
         });
       }
     });
   }
 
-  // Initialize on load
-  document.addEventListener("DOMContentLoaded", initMermaid);
+ let observer: MutationObserver | null = null;
+
+ function cleanup() {
+   if (observer) {
+     observer.disconnect();
+   }
+ }
+ 
+  // Initialize on load - with fallback timing
+  if (document.readyState === 'loading') {
+    document.addEventListener("DOMContentLoaded", initMermaid);
+  } else {
+    // DOM already loaded, run immediately
+    setTimeout(initMermaid, 100);
+  }
 
   // Reinitialize on theme change
-  document.addEventListener("astro:after-swap", initMermaid);
+  document.addEventListener("astro:after-swap", () => {
+    setTimeout(initMermaid, 100);
+  });
+
+  // Additional fallback - check after page load
+  window.addEventListener("load", () => {
+    setTimeout(initMermaid, 200);
+  });
+
+  // Cleanup on page unload
+  document.addEventListener("astro:before-swap", cleanup);
 
   // Listen for theme changes
-  const observer = new MutationObserver((mutations) => {
+  observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.attributeName === "class") {
         initMermaid();
