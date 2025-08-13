@@ -14,6 +14,7 @@ langchain과 langgraph 와 함께 에이전트 개발에 많이 보이는 프레
 - Character chatbot 처럼 role, goal 에 의해서 agent 정의를 손쉽게 할 수 있음.
 - Memory, tool 등의 기능을 손쉽게 정의할 수 있음.
 - 간단한 경우에는 편리할 듯 한데, 복잡한 경우에는 어떻게 ?
+- Code 자체보다 prompt 로 role, goal 등을 specific 하게 적는 작업이 대부분이 될 듯.
 
 ## 1. Simple version
 
