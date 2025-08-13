@@ -15,6 +15,8 @@ langchain과 langgraph 와 함께 에이전트 개발에 많이 보이는 프레
 - Memory, tool 등의 기능을 손쉽게 정의할 수 있음.
 - 간단한 경우에는 편리할 듯 한데, 복잡한 경우에는 어떻게 ?
 
+## 1. Simple version
+
 ### Import
 
 ```python
@@ -137,6 +139,101 @@ Here are some AI engineer jokes that humorously capture the challenges faced in 
    Because they heard they need to "raise their performance"!
 
 These jokes highlight the irony and absurdity often encountered in the tech world, along with relatable experiences that AI engineers face, all while tapping into sociocultural themes of misunderstanding technology and the challenges of bridging human-computer interactions.
+```
+
+## 2. Class style
+
+### Env
+
+```python
+import dotenv
+
+dotenv.load_dotenv()
+```
+
+### Config
+
+설정을 code 와 분리해서 config 아래에 yaml file 로 정의
+
+config/agents.yaml
+
+```yaml
+translator_agent:
+  role: >
+    Translator to translate from English to Italian
+  goal: >
+    To be a good and useful translator to avoid misunderstandings.
+  backstory: >
+    You grew up between New York and Palermo, you can speak two languages fluently, and you can detect the cultural differences.
+```
+
+config/tasks.yaml
+
+```yaml
+translate_task:
+  description: >
+    Translate {sentence} from English to Italian without making mistakes.
+  expected_output: >
+    A well formatted translation from English to Italian using proper capitalization of names and places.
+  agent: translator_agent
+
+retranslate_task:
+  description: >
+    Translate {sentence} from Italian to Greek without making mistakes.
+  expected_output: >
+    A well formatted translation from Italian to Greek using proper capitalization of names and places.
+  agent: translator_agent
+```
+
+### Class 정의
+
+Class 에서 decorator 이용해서 정의를 하고, config에 yaml 로 정의한 설정값을 불러와서 사용함.
+
+- `config/agents.yaml` : `self.agents_config["XXX"]`
+- `config/tasks.yaml` : `self.tasks_config["XXX]`
+
+```python
+from crewai import Crew, Agent, Task
+from crewai.project import CrewBase, agent, task, crew
+
+@CrewBase
+class TranslatorCrew:
+
+    @agent
+    def translator_agent(self):
+        return Agent(
+            config=self.agents_config["translator_agent"],
+        )
+
+    @task
+    def translate_task(self):
+        return Task(
+            config=self.tasks_config["translate_task"],
+        )
+
+    @task
+    def retranslate_task(self):
+        return Task(
+            config=self.tasks_config["retranslate_task"],
+        )
+
+    @crew
+    def assemble_crew(self):
+        return Crew(
+            agents=self.agents,
+            tasks=self.tasks,
+            verbose=True,
+        )
+```
+
+### 실행
+
+```python
+TranslatorCrew().assemble_crew().kickoff(
+    inputs={
+        "sentence": "I'm Michael and I like to ride my bicicle in Napoli",
+    }
+)
 ```
 
 ### Reference
