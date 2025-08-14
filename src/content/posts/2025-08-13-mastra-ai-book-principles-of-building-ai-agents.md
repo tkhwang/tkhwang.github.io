@@ -1,7 +1,7 @@
 ---
-title: "[AI] mastra.ai 의 Principles of Building AI Agents - TypeScript 기반 AI Agent Framework"
+title: "[mastra.ai] Principles of Building AI Agents"
 description: "TypeScript 기반 AI Agent framework인 mastra.ai의 Principles of Building AI Agents 주요 내용 정리"
-date: "Aug 14 2025"
+date: "Aug 13 2025"
 tags: ["ai", "mastra.ai"]
 ---
 
