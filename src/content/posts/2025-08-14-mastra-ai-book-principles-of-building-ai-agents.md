@@ -26,14 +26,14 @@ Gatsby co-founder 와 key engineer 들이 뭉쳐서 mastra.ai 를 만들었다�
 참고로 mastra 의 code 일부는 다음과 같이 생겼습니다.
 
 ```typescript
-import { Agent } from "@mastra/core/agent"
-import { openai } from "@ai-sdk/openai"
+import { Agent } from "@mastra/core/agent";
+import { openai } from "@ai-sdk/openai";
 
 export const myAgent = new Agent({
-    name: "My Agent",
-    instructions: "You are a helpful assistant.",
-    model: openai("gpt-4o-mini");
-})
+  name: "My Agent",
+  instructions: "You are a helpful assistant.",
+  model: openai("gpt-4o-mini"),
+});
 ```
 
 ### 6. Tool calling
@@ -177,7 +177,6 @@ const publisherAgent = new Agent({
     provider: "ANTHROPIC",
     name: "claude-3-5-sonnect-20241022",
   },
-  model: openai("gpt-4o-mini"),
   tools: {
     copywriteTool,
     editorTool,
@@ -197,18 +196,18 @@ import { openai } from "@ai-sdk/openai";
 import {
   FaithfulnessMetric,
   ContentSimilarityMetric,
-  HallucinateionMetric,
+  HallucinationMetric,
 } from "@mastra/evals/nlp";
 
 export const myAgent = new Agent({
   name: "ContentWriter",
-  instructions: "You are a content writer that creates accurate stoyies",
+  instructions: "You are a content writer that creates accurate stoyies.",
   evals: [
     new FaithfulnessMetric(),
     new ContentSimilarityMetric({
       threshold: 0.8,
     }),
-    new HallucinateionMetric(),
+    new HallucinationMetric(),
   ],
 });
 ```
