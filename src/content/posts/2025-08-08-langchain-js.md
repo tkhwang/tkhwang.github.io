@@ -1,6 +1,6 @@
 ---
-title: "[LangChain] Javascript 로 LangChain.js 와 langgraph 사용하기"
-description: "간단한 예제로 javascript 로 langchain.js 와 langgraph 이용하는 예제"
+title: "[LangChain] Javascript 로 LangChain.js 와 LangGraph 사용하기"
+description: "간단한 예제로 javascript 로 langchain.js 와 LangGraph 이용하는 예제"
 date: "Aug 10 2025"
 tags: ["ai", "LangChain"]
 ---
