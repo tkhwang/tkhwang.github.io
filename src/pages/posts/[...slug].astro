@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import Giscus from "../../components/Giscus.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../lib/utils";
 
@@ -14,20 +15,26 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"posts">;
 
 const post = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 ---
 
 <Layout
   title={post.data.title}
   description={post.data.description}
   image={post.data.image}
+  className="post-layout"
 >
+  <!-- TOC 컴포넌트 -->
+  <TableOfContents headings={headings} />
+
   <main>
     <header class="mb-8">
       <h1 class="mb-3 text-2xl font-semibold">
         {post.data.title}
       </h1>
-      <div class="mb-4 border-l-4 border-gray-300 bg-gray-50 p-4 text-gray-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300">
+      <div
+        class="mb-4 border-l-4 border-gray-300 bg-gray-50 p-4 text-gray-700 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300"
+      >
         <p class="italic">{post.data.description}</p>
       </div>
       <div class="flex flex-wrap items-center gap-3 text-sm">

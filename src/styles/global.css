@@ -24,6 +24,36 @@
 }
 
 @layer components {
+  /* TOC 전용 스타일 */
+  .toc-container {
+    /* 큰 화면에서만 표시 */
+    @media (min-width: 1280px) {
+      display: block !important;
+    }
+  }
+
+  /* TOC가 있을 때도 코드 블록은 여전히 full width 유지 */
+  .post-layout {
+    position: relative;
+  }
+
+  .post-layout .toc-container {
+    position: fixed;
+    top: 6rem;
+    right: 1rem;
+    z-index: 10;
+    width: 16rem;
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+  }
+
+  /* 태블릿에서는 TOC 숨김 */
+  @media (max-width: 1279px) {
+    .toc-container {
+      display: none !important;
+    }
+  }
+
   article {
     p {
       @apply my-4 leading-relaxed;
