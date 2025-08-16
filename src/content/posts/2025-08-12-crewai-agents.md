@@ -5,7 +5,7 @@ date: "Aug 12 2025"
 tags: ["ai", "crewai"]
 ---
 
-LangChain과 langgraph 와 함께 에이전트 개발에 많이 보이는 프레임워크 중의 하나가 [CrewAI](https://www.crewai.com/) 입니다. <br />
+LangChain과 LangGraph 와 함께 에이전트 개발에 많이 보이는 프레임워크 중의 하나가 [CrewAI](https://www.crewai.com/) 입니다. <br />
 간단한 예제이지만 어떤 특징이 있는지 보기 위해서 정리해봅니다.
 
 ### TL; DR
