@@ -1,13 +1,13 @@
 ---
-title: "[langchain] Javascript 로 langchain.js 와 langgraph 사용하기"
+title: "[LangChain] Javascript 로 LangChain.js 와 langgraph 사용하기"
 description: "간단한 예제로 javascript 로 langchain.js 와 langgraph 이용하는 예제"
 date: "Aug 10 2025"
-tags: ["ai", "langchain"]
+tags: ["ai", "LangChain"]
 ---
 
 AI Agent 개발을 위해서 langchain 을 보고 있는데 대부분 python 으로만 설명을 하더군요.
 
-[langchain.js](https://js.langchain.com/docs/introduction/)도 있다고 하는데, 실제 코드는 잘 보지 못했는데,
+[LangChain.js](https://js.langchain.com/docs/introduction/)도 있다고 하는데, 실제 코드는 잘 보지 못했는데,
 orielly 책 [러닝 랭체인](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=363882755&start=slayer)에서 예제를 python 과 함께 javascript code 도 되어 있어서 typical 한 예제 정리해보았습니다.
 
 ### LangChain diagram

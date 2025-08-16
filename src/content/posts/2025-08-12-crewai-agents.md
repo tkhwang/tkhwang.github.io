@@ -5,12 +5,12 @@ date: "Aug 12 2025"
 tags: ["ai", "crewai"]
 ---
 
-langchain과 langgraph 와 함께 에이전트 개발에 많이 보이는 프레임워크 중의 하나가 [CrewAI](https://www.crewai.com/) 입니다. <br />
+LangChain과 langgraph 와 함께 에이전트 개발에 많이 보이는 프레임워크 중의 하나가 [CrewAI](https://www.crewai.com/) 입니다. <br />
 간단한 예제이지만 어떤 특징이 있는지 보기 위해서 정리해봅니다.
 
 ### TL; DR
 
-- langchain에 비해서 특정 role을 갖는 agent 의 연동을 손쉽게 설정할 수 있다.
+- LangChain에 비해서 특정 role을 갖는 agent 의 연동을 손쉽게 설정할 수 있다.
 - Character chatbot 처럼 role, goal 에 의해서 agent 정의를 손쉽게 할 수 있음.
 - Memory, tool 등의 기능을 손쉽게 정의할 수 있음.
 - 간단한 경우에는 편리할 듯 한데, 복잡한 경우에는 어떻게 ?
