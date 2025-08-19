@@ -1,6 +1,6 @@
 ---
-title: "[mastra.ai] mastra.ai 101"
-description: ""
+title: "[mastra.ai] Mastra 101: MCP로 에이전트·툴·메모리·워크플로우 실습"
+description: "MCP로 Mastra 101 실습: 에이전트·툴, MCP 통합, 메모리·워크플로우."
 date: "Aug 19 2025"
 tags: ["ai", "mastra.ai"]
 ---
@@ -323,7 +323,7 @@ npm install @mastra/mcp@latest
 Adding mcpTools initialization with top-level await
 
 ```typescript
-// /src/mastra/mcp.ts
+// /src/mastra/mcp/mcp-client.ts
 
 import { MCPClient } from "@mastra/mcp";
 
@@ -332,14 +332,46 @@ export const mcp = new MCPClient({
     // Servers will be added in subsequent steps
   },
 });
+```
 
-export const mcpTools = await mcp.getTools();
+## Step4: initializing mcp tools
+
+Once you have the configuration set up, you need to initialize the MCP tools:
+
+```typescript
+const mcpTools = await mcp.getTools();
+```
+
+This asynchronous call fetches all the available tools from the configured MCP servers. The `getTools()` method connects to each server specified in your configuration, retrieves the available tools, and returns them in a format that can be used by your Mastra agent.
+
+The `mcpTools` object will contain all the tools provided by the MCP servers you've configured. We'll add these tools to our agent in the next step.
+
+## Step6: updating your agent
+
+```typescript
+export const personalAssistantAgent = new Agent({
+  name: "Personal Assistant",
+  instructions: `
+    You are a helpful personal assistant that can help with various tasks.
+    
+    Keep your responses concise and friendly.
+  `,
+  model: openai("gpt-4o"),
+  tools: { ...mcpTools }, // Add MCP tools to your agent
+});
 ```
 
 ## Step7: What is Zapier MCP?
 
 Zapier MCP connects your agent to thousands of apps (Gmail, Outlook, Twitter/X, LinkedIn, Trello, Asana, etc.) via Zapier.
 It expands capabilities without writing custom tools for each service.
+
+- Email services (Gmail, Outlook, etc.)
+- Social media platforms (Twitter/X, LinkedIn, etc.)
+- Project management tools (Trello, Asana, etc.)
+- And many more
+
+By integrating the Zapier MCP server with your Mastra agent, you can give it access to all these services without having to write custom tool functions for each one. This significantly expands your agent's capabilities and makes it more useful for a wide range of tasks.
 
 ## Step8: getting zapier mcp url
 
@@ -363,7 +395,30 @@ export const mcp = new MCPClient({
 export const mcpTools = await mcp.getTools();
 ```
 
-## Step13: what is github mcp
+## Step13: What is the GitHub MCP Server?
+
+The GitHub MCP server provides tools for interacting with GitHub repositories, including:
+
+- Monitoring repository activity
+- Checking pull requests and issues
+- Viewing commit history
+- Summarizing development patterns
+
+## Step14: getting github mcp url
+
+1. Setting up a Smithery account
+2. Creating a personal access token with your GitHub account
+3. Getting your unique MCP URL via the Smithery packages
+
+```bash
+# Add this to your .env file
+SMITHERY_API_KEY=your_smithery_api_key
+SMITHERY_PROFILE=your_smithery_profile_name
+```
+
+Using an environment variable keeps your configuration secure and flexible. It also prevents sensitive information from being committed to your repository.
+
+We will use the Smithery packages to authenticate and create a streamable HTTP URL for the MCP server configuration
 
 ```typescript
 import { MCPClient } from "@mastra/mcp";
@@ -403,41 +458,211 @@ export const mcp = new MCPClient({
 export const mcpTools = await mcp.getTools();
 ```
 
-getting github mcp url
-14
-updating mcp config github
-15
-updating agent instructions github
-16
-testing github integration
-17
-troubleshooting github
-18
-what is hackernews mcp
-19
-updating mcp config hackernews
-20
-updating agent instructions hackernews
-21
-testing hackernews integration
-22
-troubleshooting hackernews
-23
-what is filesystem mcp
-24
-creating notes directory
-25
-updating mcp config filesystem
-26
-updating agent instructions filesystem
-27
-testing filesystem integration
-28
-troubleshooting filesystem
-29
-enhancing memory configuration
-30
-conclusion
+## Step18: what is hackernews mcp
+
+The Hacker News MCP server provides tools for accessing content from Hacker News, including:
+
+- Retrieving top stories
+- Searching for specific stories
+- Staying updated on tech trends and news
+
+## Step19: updating mcp config hackernews
+
+Unlike the previous MCP servers that use URLs, the Hacker News MCP server can be run directly using NPX. This means we don't need to set up any external services or authentication.
+
+Let's update your MCP configuration in `src/mastra/agents/index.ts` to include the Hacker News server:
+
+```typescript
+const mcp = new MCPClient({
+  servers: {
+    zapier: {
+      url: new URL(process.env.ZAPIER_MCP_URL || ""),
+    },
+    github: {
+      url: new URL(process.env.COMPOSIO_MCP_GITHUB || ""),
+    },
+    hackernews: {
+      command: "npx",
+      args: ["-y", "@devabdultech/hn-mcp-server"],
+    },
+  },
+});
+```
+
+## Step23: what is filesystem mcp
+
+The Filesystem MCP server provides tools for interacting with your local file system, including:
+
+- Reading files
+- Writing to files
+- Creating directories
+- Listing files and directories
+- Managing persistent data like notes and to-do lists
+
+## Step24: creating notes directory
+
+Like the Hacker News MCP server, the Filesystem MCP server can be run directly using a package manager. We'll use PNPX (the Pnpm version of NPX) to run it.
+
+First, let's create a directory where our agent can store notes and other files:
+
+```bash
+mkdir -p notes
+```
+
+This command creates a directory called `notes` in your project's root directory. This is where your agent will store any files it creates or modifies. The `-p` flag ensures that the command doesn't fail if the directory already exists.
+
+Creating a dedicated directory for your agent's files is a good practice for several reasons:
+
+- It keeps your agent's files separate from your application code
+- It makes it easier to backup or version control your agent's data
+- It provides a clear boundary for what your agent can access, enhancing security
+
+## Step25: updating mcp config filesystem
+
+```typescript
+import path from "path";
+
+const mcp = new MCPClient({
+  servers: {
+    zapier: {
+      url: new URL(process.env.ZAPIER_MCP_URL || ""),
+    },
+    github: {
+      url: new URL(process.env.COMPOSIO_MCP_GITHUB || ""),
+    },
+    hackernews: {
+      command: "npx",
+      args: ["-y", "@devabdultech/hn-mcp-server"],
+    },
+    textEditor: {
+      command: "npx",
+      args: [
+        "@modelcontextprotocol/server-filesystem",
+        path.join(process.cwd(), "..", "..", "notes"),
+      ],
+    },
+  },
+});
+```
+
+This configuration tells MCP to run the Filesystem server using PNPX, pointing it to the "notes" directory we created. The `path.join(process.cwd(), "notes")` ensures that the path is correct regardless of where the application is run from.
+
+The `textEditor` key is a unique identifier for this server in your configuration. The `command` property specifies that we want to use PNPX to run the server, and the `args` property provides the arguments to pass to PNPX, including the package name and the path to the notes directory.
+
+## Step26: Updating agent instructions filesystem
+
+```typescript
+export const personalAssistantAgent = new Agent({
+  name: "Personal Assistant",
+  instructions: `
+    You are a helpful personal assistant that can help with various tasks such as email, 
+    monitoring github activity, scheduling social media posts, providing tech news,
+    and managing notes and to-do lists.
+    
+    You have access to the following tools:
+    
+    1. Gmail:
+       - Use these tools for reading and categorizing emails from Gmail
+       - You can categorize emails by priority, identify action items, and summarize content
+       - You can also use this tool to send emails
+    
+    2. GitHub:
+       - Use these tools for monitoring and summarizing GitHub activity
+       - You can summarize recent commits, pull requests, issues, and development patterns
+    
+    3. Hackernews:
+       - Use this tool to search for stories on Hackernews
+       - You can use it to get the top stories or specific stories
+       - You can use it to retrieve comments for stories
+    
+    4. Filesystem:
+       - You also have filesystem read/write access to a notes directory. 
+       - You can use that to store info for later use or organize info for the user.
+       - You can use this notes directory to keep track of to-do list items for the user.
+       - Notes dir: ${path.join(process.cwd(), "notes")}
+    
+    Keep your responses concise and friendly.
+  `,
+  model: openai("gpt-4o"),
+  tools: { ...mcpTools },
+  memory,
+});
+```
+
+## Step29: enhancing memory configuration
+
+Finally, let's enhance our memory configuration to make our agent even more helpful:
+
+```typescript
+import { LibSQLStore, LibSQLVector } from "@mastra/libsql";
+
+const memory = new Memory({
+  storage: new LibSQLStore({
+    url: "file:../../memory.db",
+  }),
+  vector: new LibSQLVector({
+    connectionUrl: "file:../../memory.db",
+  }),
+  embedder: openai.embedding("text-embedding-3-small"),
+  options: {
+    // Keep last 20 messages in context
+    lastMessages: 20,
+    // Enable semantic search to find relevant past conversations
+    semanticRecall: {
+      topK: 3,
+      messageRange: {
+        before: 2,
+        after: 1,
+      },
+    },
+    // Enable working memory to remember user information
+    workingMemory: {
+      enabled: true,
+      template: `
+      <user>
+         <first_name></first_name>
+         <username></username>
+         <preferences></preferences>
+         <interests></interests>
+         <conversation_style></conversation_style>
+       </user>`,
+    },
+  },
+});
+```
+
+And update the agent instructions to use this enhanced memory:
+
+```typescript
+export const personalAssistantAgent = new Agent({
+  name: "Personal Assistant",
+  instructions: `
+    // ... existing instructions ...
+    
+    You have access to conversation memory and can remember details about users.
+    When you learn something about a user, update their working memory using the appropriate tool.
+    This includes:
+    - Their interests
+    - Their preferences
+    - Their conversation style (formal, casual, etc.)
+    - Any other relevant information that would help personalize the conversation
+
+    Always maintain a helpful and professional tone.
+    Use the stored information to provide more personalized responses.
+  `,
+  model: openai("gpt-4o"),
+  tools: { ...mcpTools },
+  memory,
+});
+```
+
+This enhanced memory configuration gives your agent more sophisticated memory capabilities:
+
+- 1 **Conversation History**: The `lastMessages` option keeps the last 20 messages in context, allowing your agent to reference recent conversations.
+- 2 **Semantic Recall**: The `semanticRecall` option enables your agent to find relevant past conversations using semantic search, even if they happened a long time ago. For `semanticRecall` to work, you need to have a vector store and an embedder configured
+- 3 **Working Memory**: The `workingMemory` option allows your agent to remember specific information about users, such as their preferences and interests, and use that information to provide more personalized responses.
+
+By updating your agent's instructions to include information about these memory capabilities, you're helping it understand how to use them effectively to provide a better user experience.
 
 ---
 
