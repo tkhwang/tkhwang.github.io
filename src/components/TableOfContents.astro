@@ -89,8 +89,8 @@ const tocHeadings = headings.filter(
         }
       },
       {
-        rootMargin: "-100px 0px -80% 0px",
-        threshold: 0,
+        rootMargin: "-20% 0px -70% 0px",
+        threshold: 0.1,
       },
     );
 
@@ -126,7 +126,8 @@ const tocHeadings = headings.filter(
 
 <style>
   .toc-active {
-    @apply bg-blue-50 font-medium text-blue-600 dark:bg-blue-900/30 dark:text-blue-400;
+    @apply bg-blue-50 font-bold text-blue-700 dark:bg-blue-900/30 dark:text-blue-300;
+    border-left: 3px solid #2563eb;
   }
 
   /* TOC 컨테이너 스크롤바 스타일링 */
