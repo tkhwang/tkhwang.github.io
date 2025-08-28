@@ -1,7 +1,7 @@
 ---
 title: "[LangChain] Plan-and-Execute Agents: ReAct를 넘어선 차세대 AI 에이전트 아키텍처"
 description: "LangChain의 Plan-and-Execute 스타일 에이전트 디자인을 소개합니다. 기존 ReAct 에이전트 대비 더 빠른 실행 속도, 비용 절감, 그리고 향상된 성능을 제공하는 3가지 개선된 에이전트 아키텍처를 알아봅니다."
-date: "Aug 28 2025"
+date: "Aug 27 2025"
 tags: ["ai", "langchain", "langgraph"]
 ---
 
