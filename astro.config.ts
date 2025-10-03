@@ -50,6 +50,8 @@ export default defineConfig({
     },
   },
   experimental: {
-    svg: true,
+    svg: {
+      mode: "inline",
+    },
   },
 });
