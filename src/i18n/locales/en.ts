@@ -1,15 +1,15 @@
 import type { I18nStrings } from "@/i18n/types";
 
 const baseStrings = {
-  "site.title": "Evergreen Code Wisdom",
-  "site.desc": "기술은 빠르게 변하지만, 좋은 코드를 만드는 원칙은 변하지 않습니다. 변하는 기술 속에서 변하지 않는 개발의 지혜를 찾아가는 과정을 기록합니다.",
+  "site.title": "When Code Meets Design",
+  "site.desc": "코드와 디자인이 만나는 지점에서 더 나은 소프트웨어를 만들기 위한 고민과 통찰을 기록합니다. 기술과 디자인, 두 세계의 경계에서 얻은 개발 이야기.",
 };
 
 const ENLocale: I18nStrings = {
   ...baseStrings,
   "hero.title": "",
   "hero.body": `
-        기술은 빠르게 변하지만, 좋은 코드를 만드는 원칙은 변하지 않습니다. 변하는 기술 속에서 변하지 않는 개발의 지혜를 찾아가는 과정을 기록합니다.
+        코드와 디자인이 만나는 지점에서 더 나은 소프트웨어를 만들기 위한 고민과 통찰을 기록합니다. 기술과 디자인, 두 세계의 경계에서 얻은 개발 이야기.
 `,
   "hero.beforeReadme": "Read the blog posts or check",
   "hero.readme": "README",
