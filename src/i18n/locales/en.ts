@@ -1,18 +1,15 @@
 import type { I18nStrings } from "@/i18n/types";
 
 const baseStrings = {
-  "site.title": "AstroPaper I18n",
-  "site.desc": "A fork of AstroPaper theme with support for I18n",
+  "site.title": "Evergreen Code Wisdom",
+  "site.desc": "기술은 빠르게 변하지만, 좋은 코드를 만드는 원칙은 변하지 않습니다. 변하는 기술 속에서 변하지 않는 개발의 지혜를 찾아가는 과정을 기록합니다.",
 };
 
 const ENLocale: I18nStrings = {
   ...baseStrings,
-  "hero.title": "Mingalaba",
+  "hero.title": "",
   "hero.body": `
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
+        기술은 빠르게 변하지만, 좋은 코드를 만드는 원칙은 변하지 않습니다. 변하는 기술 속에서 변하지 않는 개발의 지혜를 찾아가는 과정을 기록합니다.
 `,
   "hero.beforeReadme": "Read the blog posts or check",
   "hero.readme": "README",

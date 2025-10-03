@@ -3,7 +3,7 @@ author: "tkhwang"
 pubDatetime: 2025-06-21T00:00:00Z
 title: "[react.js] React Context Module 패턴: 전역 Context의 한계를 넘어서는 설계 전략"
 slug: "2025-06-21-reactjs-context-module-pattern"
-featured: false
+featured: true
 draft: false
 tags:
   - "react"

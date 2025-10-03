@@ -92,14 +92,6 @@ const isActive = (path: string) => {
               {t("tags")}
             </a>
           </li>
-          <li class="col-span-3">
-            <a
-              href={getRelativeLocalePath(Astro.currentLocale, "/about")}
-              class:list={{ "active-nav": isActive("/about") }}
-            >
-              {t("about")}
-            </a>
-          </li>
           {
             SITE.showArchives && (
               <li class="col-span-3">
@@ -133,9 +125,6 @@ const isActive = (path: string) => {
               <IconSearch />
               <span class="sr-only">{t("search")}</span>
             </LinkButton>
-          </li>
-          <li class="col-span-1 flex items-center justify-center">
-            <LanguagePicker />
           </li>
           {
             SITE.lightAndDarkMode && (

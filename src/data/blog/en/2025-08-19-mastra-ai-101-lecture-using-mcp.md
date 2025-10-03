@@ -3,7 +3,7 @@ author: "tkhwang"
 pubDatetime: 2025-08-19T00:00:00Z
 title: "[mastra.ai] Mastra 101: MCP로 에이전트·툴·메모리·워크플로우 실습"
 slug: "2025-08-19-mastra-ai-101-lecture-using-mcp"
-featured: false
+featured: true
 draft: false
 tags:
   - "ai"
