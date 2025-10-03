@@ -2,8 +2,7 @@
 import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
 import { getLocaleInfo, stripBaseAndLocale, translateFor } from "@/i18n/utils";
-import IconArrowLeft from "@/assets/icons/IconArrowLeft.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import Icon from "./Icon.astro";
 import LinkButton from "./LinkButton.astro";
 
 export interface Props {
@@ -30,7 +29,7 @@ const currentLocale = Astro.currentLocale;
         class:list={["me-4 select-none", { "opacity-50": !page.url.prev }]}
         ariaLabel="Previous"
       >
-        <IconArrowLeft class="inline-block rtl:rotate-180" />{" "}
+        <Icon name="arrowLeft" class="inline-block rtl:rotate-180" />{" "}
         {t("pagination.prev")}
       </LinkButton>
       {page.currentPage.toLocaleString(LOCALE.langTag)} /{" "}
@@ -42,7 +41,7 @@ const currentLocale = Astro.currentLocale;
         ariaLabel="Next"
       >
         {t("pagination.next")}{" "}
-        <IconArrowRight class="inline-block rtl:rotate-180" />
+        <Icon name="arrowRight" class="inline-block rtl:rotate-180" />
       </LinkButton>
     </nav>
   )

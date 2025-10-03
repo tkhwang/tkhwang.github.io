@@ -49,9 +49,4 @@ export default defineConfig({
       exclude: ["@resvg/resvg-js"],
     },
   },
-  experimental: {
-    svg: {
-      mode: "inline",
-    },
-  },
 });

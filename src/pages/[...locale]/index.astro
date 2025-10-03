@@ -1,6 +1,5 @@
 ---
-import IconRss from "@/assets/icons/IconRss.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import Icon from "@/components/Icon.astro";
 import Card from "@/components/Card.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
@@ -49,10 +48,9 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         aria-label={t("a11y.rssFeed")}
         title={t("rssFeed")}
       >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125 stroke-accent stroke-3 rtl:rotate-270"
+        <Icon
+          name="rss"
+          class="scale-125 stroke-accent stroke-3 rtl:rotate-270 size-5"
         />
         <span class="sr-only">{t("rssFeed")}</span>
       </a>
@@ -111,7 +109,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     <div class="my-8 text-center">
       <LinkButton href="/posts/">
         {t("allPosts")}{" "}
-        <IconArrowRight class="inline-block rtl:rotate-180" />
+        <Icon name="arrowRight" class="inline-block rtl:rotate-180" />
       </LinkButton>
     </div>
   </main>
