@@ -8,7 +8,7 @@ import RecentProjects from "@components/RecentProjects.astro";
 import WorkExperiences from "@components/WorkExperiences.astro";
 import DetailsQuote from "@components/DetailsQuote";
 
-const pageTitle: string = "AstroPico";
+const pageTitle: string = "Where Code Meets Design";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -20,16 +20,13 @@ const pageTitle: string = "AstroPico";
     <section>
       <hgroup>
         <h1>{pageTitle}</h1>
-        <p>... Astro styled with Pico CSS</p>
       </hgroup>
       <p>
-        <u><a href="/about/" class="">AstroPico</a></u> is an Astro theme who likes
-        simple implementation and good looking visual.
+        코드와 디자인이 만나는 지점에서 더 나은 소프트웨어를 만들기 위한 고민과 통찰을 기록합니다. 기술과 디자인, 두 세계의 경계에서 얻은 개발 이야기.
       </p>
-      <DetailsQuote client:only="react" />
     </section>
-    <hr />
-    <section>
+    <!-- <section>
+      <hr /> 
       <hgroup>
         <Heading
           title="Featured"
@@ -38,14 +35,14 @@ const pageTitle: string = "AstroPico";
         />
       </hgroup>
       <Featured />
-    </section>
+    </section> -->
     <hr />
     <section>
       <hgroup>
         <Heading
           title="Latest posts"
           heading="3"
-          description="... some of latest"
+          description=""
         />
       </hgroup>
       <LatestPosts />
@@ -56,7 +53,7 @@ const pageTitle: string = "AstroPico";
         </small>
       </p>
     </section>
-    <hr />
+    <!-- <hr />
     <section>
       <hgroup>
         <Heading title="Recent projects" heading="3" description="" />
@@ -68,21 +65,6 @@ const pageTitle: string = "AstroPico";
           <a href="https://www.github.com/san-ghun">Github</a>
         </small>
       </p>
-    </section>
-    <hr />
-    <section>
-      <hgroup>
-        <Heading title="Work experience" heading="3" description="" />
-      </hgroup>
-      <WorkExperiences />
-      <p>
-        <small>
-          If you want to know more about me,
-          <!-- If you want to see my resume, -->
-          <a href="/about/">to here</a>
-        </small>
-      </p>
-    </section>
-    <hr />
+    </section> -->
   </main>
 </BaseLayout>
