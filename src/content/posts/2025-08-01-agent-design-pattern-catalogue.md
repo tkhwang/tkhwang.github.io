@@ -3,14 +3,12 @@ title: "[AI] AI 에이전트 디자인 패턴 완전 가이드: 15가지 핵심 
 pubDate: 2025-08-01
 description: "Foundation Model 기반 AI 에이전트 개발을 위한 15가지 아키텍처 패턴과 실용적인 의사결정 플로우차트"
 author: "tkhwang"
-featured: false
+featured: true
 image:
   url: ""
   alt: ""
 tags: ["ai", "agents"]
 ---
-
-import Mermaid from "../../components/Mermaid.astro";
 
 요즘 ai agent 를 이용해서 개발을 하고 싶어서 관련된 자료를 보고 있는데, agent 개발을 위한 design pattern 이 잘 정리가 된 것이 있어서 공부할 겸해서 정리해보았습니다.
 
@@ -216,97 +214,3 @@ Agent Adapter는 **AI 에이전트와 외부 도구 및 시스템 간의 인터�
 다음은 에이전트 디자인 패턴 선택을 위한 의사결정 모델입니다:
 
 ![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/0-decisioin-model.png?raw=true)
-
-<Mermaid
-code={`flowchart TD
-Start((시작)) --> Q1{환경 컨텍스트를<br/>캡처할 수 있는가?}
-
-    Q1 -->|No| PassiveGoal[<b>Passive goal creator</b><br/>✓ efficiency<br/>✗ reasoning uncertainty]
-    Q1 -->|Yes| ProactiveGoal[<b>Proactive goal creator</b><br/>✓ accessibility<br/>✗ overhead]
-
-    PassiveGoal --> Q2{프롬프트<br/>최적화?}
-    ProactiveGoal --> Q2
-
-    Q2 -->|No| Q3{외부 데이터<br/>저장소 사용?}
-    Q2 -->|Yes| PromptOpt[<b>Prompt/response optimizer</b><br/>✓ standardisation<br/>✓ goal alignment<br/>✓ interoperability<br/>✓ adaptability<br/>✗ rule simplification<br/>✗ overhead]
-
-    PromptOpt --> Q3
-    Q3 -->|No| Q4{FM을 여러 번<br/>쿼리하는가?}
-    Q3 -->|Yes| RAG[<b>RAG</b><br/>✓ knowledge retrieval<br/>✓ updatability<br/>✓ data privacy<br/>✓ cost-efficiency<br/>✗ overhead<br/>✗ data limitation]
-
-    RAG --> Q4
-    Q4 -->|No| OneShot[<b>One-shot<br/>model querying</b><br/>✓ cost-efficiency<br/>✓ simplicity<br/>✗ oversimplification<br/>✗ lack of explainability<br/>✗ context window limitation]
-    Q4 -->|Yes| Incremental[<b>Incremental<br/>model querying</b><br/>✓ supplementary context<br/>✓ reasoning certainty<br/>✓ explainability<br/>✗ overhead]
-
-    OneShot --> Q5{계획에서<br/>여러 선택지?}
-    Incremental --> Q5
-
-    Q5 -->|No| SinglePath[<b>Single-path<br/>plan generator</b><br/>✓ efficiency<br/>✓ flexibility<br/>✗ oversimplification]
-    Q5 -->|Yes| MultiPath[<b>Multi-path<br/>plan generator</b><br/>✓ alignment to human preference<br/>✓ inclusiveness<br/>✗ overhead]
-
-    SinglePath --> Q6{생성된 계획을<br/>반영하는가?}
-    MultiPath --> Q6
-
-    Q6 -->|Yes| ReflectionChoice{반영 방식}
-    Q6 -->|No| Q7{여러 에이전트<br/>협력하는가?}
-
-    ReflectionChoice --> SelfReflection[<b>Self-reflection</b><br/>✓ continuous improvement<br/>✓ efficiency<br/>✓ reasoning uncertainty<br/>✗ limited capability]
-
-    ReflectionChoice --> CrossReflection[<b>Cross-reflection</b><br/>✓ inclusiveness<br/>✓ scalability<br/>✓ reasoning uncertainty<br/>✓ fairness preservation<br/>✓ complex accountability]
-
-    ReflectionChoice --> HumanReflection[<b>Human reflection</b><br/>✓ robustness<br/>✓ safety<br/>✓ adaptability<br/>✗ fairness]
-
-    SelfReflection --> Q7
-    CrossReflection --> Q7
-    HumanReflection --> Q7
-
-    Q7 -->|Yes| CoopChoice{협력 방식}
-    Q7 -->|No| Q8{FM 입출력<br/>제어하는가?}
-
-    CoopChoice --> VotingCoop[<b>Voting-based<br/>Cooperation</b><br/>✓ fairness<br/>✓ collective intelligence<br/>✓ fault tolerance<br/>✗ division of labor]
-
-    CoopChoice --> RoleCoop[<b>Role-based<br/>Cooperation</b><br/>✓ adaptability<br/>✓ explainability<br/>✓ data privacy<br/>✓ scalability]
-
-    CoopChoice --> DebateCoop[<b>Debate-based<br/>Cooperation</b><br/>✓ critical thinking<br/>✓ reasoning quality<br/>✗ coordination overhead]
-
-    VotingCoop --> Q8
-    RoleCoop --> Q8
-    DebateCoop --> Q8
-
-    Q8 -->|Yes| Guardrails[<b>Multimodal<br/>guardrails</b><br/>✓ discoverability<br/>✓ efficiency<br/>✓ scalability<br/>✗ overhead]
-    Q8 -->|No| Q9{외부 도구/에이전트<br/>사용하는가?}
-
-    Guardrails --> Q9
-    Q9 -->|Yes| Registry[<b>Tool/agent<br/>registry</b><br/>✓ discoverability<br/>✓ adaptability<br/>✓ reduced cost<br/>✗ overhead]
-    Q9 -->|No| Q10{에이전트 성능<br/>평가하는가?}
-
-    Registry --> Adapter[<b>Agent adapter</b><br/>✓ interoperability<br/>✓ modularity<br/>✗ complexity]
-    Adapter --> Q10
-
-    Q10 -->|Yes| Evaluator[<b>Agent<br/>evaluator</b><br/>✓ reliability<br/>✓ explainability<br/>✓ adaptability<br/>✓ flexibility<br/>✓ metric quantification<br/>✓ evaluation quality]
-    Q10 -->|No| End((종료))
-
-    Evaluator --> End
-
-    style Start fill:#e1f5fe
-    style End fill:#e8f5e8
-    style PassiveGoal fill:#fff3e0
-    style ProactiveGoal fill:#fff3e0
-    style PromptOpt fill:#f3e5f5
-    style RAG fill:#e8f5e8
-    style OneShot fill:#ffebee
-    style Incremental fill:#e8f5e8
-    style SinglePath fill:#fff3e0
-    style MultiPath fill:#e8f5e8
-    style SelfReflection fill:#e3f2fd
-    style CrossReflection fill:#e3f2fd
-    style HumanReflection fill:#e3f2fd
-    style VotingCoop fill:#f1f8e9
-    style RoleCoop fill:#f1f8e9
-    style DebateCoop fill:#f1f8e9
-    style Guardrails fill:#fce4ec
-    style Registry fill:#e0f2f1
-    style Adapter fill:#e0f2f1
-    style Evaluator fill:#f3e5f5`}
-
-/>
