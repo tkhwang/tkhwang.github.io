@@ -14,9 +14,5 @@ export default [
     },
   },
   { rules: { "no-console": "error" } },
-  {
-    files: ["astro.config.ts"],
-    rules: { "@typescript-eslint/no-explicit-any": "off" },
-  },
   { ignores: ["dist/**", ".astro", "public/pagefind/**"] },
 ];

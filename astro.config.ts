@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import type { ViteUserConfig } from "astro";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
@@ -9,6 +10,8 @@ import {
   LOCALES_TO_LANG,
   SUPPORTED_LOCALES,
 } from "./src/i18n/config";
+
+const vitePlugins = tailwindcss() as NonNullable<ViteUserConfig["plugins"]>;
 
 // https://astro.build/config
 export default defineConfig({
@@ -44,7 +47,7 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: tailwindcss() as any,
+    plugins: vitePlugins,
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
     },
