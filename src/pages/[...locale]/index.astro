@@ -5,9 +5,7 @@ import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import Hr from "@/components/Hr.astro";
 import LinkButton from "@/components/LinkButton.astro";
-import Socials from "@/components/Socials.astro";
 import { SITE } from "@/config";
-import { SOCIALS } from "@/constants";
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/i18n/config";
 import { getRelativeLocalePath, translateFor } from "@/i18n/utils";
 import Layout from "@/layouts/Layout.astro";
@@ -50,24 +48,13 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       >
         <Icon
           name="rss"
-          class="scale-125 stroke-accent stroke-3 rtl:rotate-270 size-5"
+          class="size-5 scale-125 stroke-accent stroke-3 rtl:rotate-270"
         />
         <span class="sr-only">{t("rssFeed")}</span>
       </a>
       <p>
         {t("hero.body")}
       </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t("socialLinks")}:
-            </div>
-            <Socials />
-          </div>
-        )
-      }
     </section>
 
     <Hr />

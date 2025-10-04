@@ -7,7 +7,7 @@ export const SOCIALS = [
     name: "Github",
     href: "https://github.com/tkhwang",
     linkTitle: (t: Translator) => t("socials.github"),
-  }
+  },
 ] as const;
 
 export const SHARE_LINKS = [

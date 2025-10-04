@@ -137,7 +137,7 @@ myWorkflow.step(
     when: {
       "fetchData.status": "success",
     },
-  },
+  }
 );
 ```
 

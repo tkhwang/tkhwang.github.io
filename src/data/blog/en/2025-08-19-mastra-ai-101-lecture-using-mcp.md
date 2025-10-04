@@ -3,7 +3,7 @@ author: "tkhwang"
 pubDatetime: 2025-08-19T00:00:00Z
 title: "[mastra.ai] Mastra 101: MCP로 에이전트·툴·메모리·워크플로우 실습"
 slug: "2025-08-19-mastra-ai-101-lecture-using-mcp"
-featured: true
+featured: false
 draft: false
 tags:
   - "ai"
@@ -1253,9 +1253,7 @@ export const generateSummaryStep = createStep({
   execute: async ({ inputData }) => {
     const { content, type, wordCount, metadata } = inputData;
 
-    const sentences = content
-      .split(/[.!?]+/)
-      .filter((s) => s.trim().length > 0);
+    const sentences = content.split(/[.!?]+/).filter(s => s.trim().length > 0);
     const firstSentence =
       (sentences[0]?.trim() || "") + (sentences[0] ? "." : "");
 
@@ -1477,9 +1475,9 @@ export const seoAnalysisStep = createStep({
     keywords: z.array(z.string()),
   }),
   execute: async ({ inputData }) => {
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    await new Promise(resolve => setTimeout(resolve, 800));
     const words = inputData.content.toLowerCase().split(/\s+/);
-    const keywords = words.filter((w) => w.length > 4).slice(0, 3);
+    const keywords = words.filter(w => w.length > 4).slice(0, 3);
     return {
       seoScore: Math.floor(Math.random() * 40) + 60,
       keywords,
@@ -1501,13 +1499,13 @@ export const readabilityStep = createStep({
     gradeLevel: z.string(),
   }),
   execute: async ({ inputData }) => {
-    await new Promise((resolve) => setTimeout(resolve, 600));
+    await new Promise(resolve => setTimeout(resolve, 600));
     const sentences =
-      inputData.content.split(/[.!?]+/).filter((s) => s.trim().length > 0)
+      inputData.content.split(/[.!?]+/).filter(s => s.trim().length > 0)
         .length || 1;
     const words = inputData.content
       .split(/\s+/)
-      .filter((s) => s.trim().length > 0).length;
+      .filter(s => s.trim().length > 0).length;
     const avg = words / sentences;
     const score = Math.max(0, 100 - avg * 3);
     const gradeLevel = score > 80 ? "Easy" : score > 60 ? "Medium" : "Hard";
@@ -1532,13 +1530,13 @@ export const sentimentStep = createStep({
     confidence: z.number(),
   }),
   execute: async ({ inputData }) => {
-    await new Promise((resolve) => setTimeout(resolve, 700));
+    await new Promise(resolve => setTimeout(resolve, 700));
     const content = inputData.content.toLowerCase();
-    const positives = ["good", "great", "excellent", "amazing"].filter((w) =>
-      content.includes(w),
+    const positives = ["good", "great", "excellent", "amazing"].filter(w =>
+      content.includes(w)
     ).length;
-    const negatives = ["bad", "terrible", "awful", "horrible"].filter((w) =>
-      content.includes(w),
+    const negatives = ["bad", "terrible", "awful", "horrible"].filter(w =>
+      content.includes(w)
     ).length;
     let sentiment: "positive" | "neutral" | "negative" = "neutral";
     if (positives > negatives) sentiment = "positive";
@@ -1624,7 +1622,7 @@ export const parallelAnalysisWorkflow = createWorkflow({
           },
         };
       },
-    }),
+    })
   )
   .commit();
 ```
@@ -1707,7 +1705,7 @@ export const assessContentStep = createStep({
     const words = content
       .trim()
       .split(/\s+/)
-      .filter((w) => w.length > 0);
+      .filter(w => w.length > 0);
     const wordCount = words.length;
 
     let category: "short" | "medium" | "long" = "short";
@@ -1771,7 +1769,7 @@ export const generalProcessingStep = createStep({
     recommendations: z.array(z.string()),
   }),
   execute: async ({ inputData }) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await new Promise(resolve => setTimeout(resolve, 500));
     return {
       processedContent: inputData.content,
       processingType: "general",

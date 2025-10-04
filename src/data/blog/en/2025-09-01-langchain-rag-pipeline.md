@@ -65,7 +65,7 @@ const chunks = await splitter.splitDocuments(docs);
 // 임베딩 생성
 const model = new OpenAIEmbeddings();
 const embeddings = await model.embedDocuments(
-  chunks.map((chunk) => chunk.pageContent)
+  chunks.map(chunk => chunk.pageContent)
 );
 ```
 

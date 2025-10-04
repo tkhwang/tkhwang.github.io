@@ -1,8 +1,9 @@
 import type { I18nStrings } from "@/i18n/types";
 
 const baseStrings = {
-  "site.title": "When Code Meets Design",
-  "site.desc": "코드와 디자인이 만나는 지점에서 더 나은 소프트웨어를 만들기 위한 고민과 통찰을 기록합니다. 기술과 디자인, 두 세계의 경계에서 얻은 개발 이야기.",
+  "site.title": "Where Code Meets Design",
+  "site.desc":
+    "코드와 디자인이 만나는 지점에서 더 나은 소프트웨어를 만들기 위한 고민과 통찰을 기록합니다. 기술과 디자인, 두 세계의 경계에서 얻은 개발 이야기.",
 };
 
 const ENLocale: I18nStrings = {

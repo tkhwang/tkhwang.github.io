@@ -1,4 +1,7 @@
 {
-  "*": ["prettier --check --plugin=prettier-plugin-astro", "eslint"],
+  "*.{astro,ts,tsx,js,jsx,json,md,css,scss,yml,yaml}": [
+    "prettier --write --plugin-search-dir=."
+  ],
+  "*.{astro,ts,tsx,js,jsx}": "eslint --fix",
   "*.{ts,tsx,astro}": "astro check"
 }

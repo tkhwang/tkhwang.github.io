@@ -29,25 +29,27 @@ const icons = {
   telegram: `<path d="M15 10l-4 4 6 6 4-16-18 7 4 2 2 6 3-4z"/>`,
   pinterest: `<line x1="8" y1="20" x2="12" y2="11"/><path d="M10.7 14c.437 1.263 1.43 2 2.55 2 2.071 0 3.75-1.554 3.75-4A5 5 0 1 0 7.5 13.7"/><circle cx="12" cy="12" r="9"/>`,
   mail: `<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>`,
-  rss: `<path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path d="M4 4a16 16 0 0 1 16 16"/><path d="M4 11a9 9 0 0 1 9 9"/>`
+  rss: `<path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"/><path d="M4 4a16 16 0 0 1 16 16"/><path d="M4 11a9 9 0 0 1 9 9"/>`,
 };
 
 const iconPath = icons[name as keyof typeof icons];
 ---
 
-{iconPath && (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    class={className}
-    id={id}
-    set:html={iconPath}
-  />
-)}
+{
+  iconPath && (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class={className}
+      id={id}
+      set:html={iconPath}
+    />
+  )
+}

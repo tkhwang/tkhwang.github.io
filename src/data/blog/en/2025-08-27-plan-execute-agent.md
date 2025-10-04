@@ -3,7 +3,7 @@ author: "tkhwang"
 pubDatetime: 2025-08-27T00:00:00Z
 title: "[LangChain] Plan-and-Execute Agents: ReAct를 넘어선 차세대 AI 에이전트 아키텍처"
 slug: "2025-08-27-plan-execute-agent"
-featured: true
+featured: false
 draft: false
 tags:
   - "ai"

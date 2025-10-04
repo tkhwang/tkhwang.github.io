@@ -200,7 +200,7 @@ export const extractFrustrationsStep = createStep({
       const frustrations = result.object;
 
       console.log(
-        `✅ Found ${frustrations.frustrations.length} frustrations, mood: ${frustrations.overallMood}`,
+        `✅ Found ${frustrations.frustrations.length} frustrations, mood: ${frustrations.overallMood}`
       );
 
       return {
@@ -313,7 +313,7 @@ export const generateCaptionsStep = createStep({
   execute: async ({ inputData }) => {
     try {
       console.log(
-        `🎨 Generating captions for ${inputData.baseTemplate.name} meme...`,
+        `🎨 Generating captions for ${inputData.baseTemplate.name} meme...`
       );
 
       const mainFrustration = inputData.frustrations.frustrations?.[0];
