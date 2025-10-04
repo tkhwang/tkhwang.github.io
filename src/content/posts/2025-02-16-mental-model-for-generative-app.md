@@ -3,6 +3,7 @@ title: "[AI] 생성형 AI를 이용한 서비스 이해를 위한 멘탈 모델"
 pubDate: 2025-02-16
 description: "웹 개발자를 위한 생성형 AI 서비스 아키텍처 멘탈 모델"
 author: "tkhwang"
+featured: false
 image:
   url: ""
   alt: ""

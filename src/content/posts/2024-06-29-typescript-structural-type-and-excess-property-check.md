@@ -3,6 +3,7 @@ title: "[typescript] 구조적 타이핑 structural typing과 초과 속성 검�
 pubDate: 2024-06-29
 description: "TypeScript 구조적 타이핑과 초과 속성 검사의 이해"
 author: "tkhwang"
+featured: false
 image:
   url: ""
   alt: ""

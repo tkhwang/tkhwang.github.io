@@ -3,6 +3,7 @@ title: "[mastra.ai] Principles of Building AI Agents"
 pubDate: 2025-08-13
 description: "TypeScript 기반 AI Agent framework인 mastra.ai의 Principles of Building AI Agents 주요 내용 정리"
 author: "tkhwang"
+featured: false
 image:
   url: ""
   alt: ""

@@ -3,6 +3,7 @@ title: "[CrewAI] CrewAI를 활용한 역할 기반 에이전트 시스템 구축
 pubDate: 2025-08-12
 description: "CrewAI 프레임워크를 사용하여 에이전트들의 협업 시스템을 구축하는 방법과 특징들을 살펴봅니다."
 author: "tkhwang"
+featured: false
 image:
   url: ""
   alt: ""

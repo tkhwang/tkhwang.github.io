@@ -2,11 +2,15 @@
 import { getCollection } from "astro:content";
 import BlogPost from "./BlogPost.astro";
 
-const allPosts = await getCollection("posts");
-const firstPost = allPosts[0];
-const secondPost = allPosts[1];
-const thirdPost = allPosts[2];
-const featuredPosts = [firstPost, secondPost, thirdPost];
+// Select posts explicitly marked as featured and sort by latest publish date.
+const featuredPosts = (await getCollection("posts"))
+  .filter((post) => post.data.featured)
+  .sort((a, b) => {
+    const aTime = new Date(a.data.pubDate).getTime();
+    const bTime = new Date(b.data.pubDate).getTime();
+    return bTime - aTime;
+  })
+  .slice(0, 3);
 ---
 
 <ul>

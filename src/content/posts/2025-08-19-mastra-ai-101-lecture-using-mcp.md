@@ -3,6 +3,7 @@ title: "[mastra.ai] Mastra 101: MCP로 에이전트·툴·메모리·워크플�
 pubDate: 2025-08-19
 description: "MCP로 Mastra 101 실습: 에이전트·툴, MCP 통합, 메모리·워크플로우."
 author: "tkhwang"
+featured: false
 image:
   url: ""
   alt: ""

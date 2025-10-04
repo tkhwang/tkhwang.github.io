@@ -3,6 +3,7 @@ title: "[AI] AI 에이전트 디자인 패턴 완전 가이드: 15가지 핵심 
 pubDate: 2025-08-01
 description: "Foundation Model 기반 AI 에이전트 개발을 위한 15가지 아키텍처 패턴과 실용적인 의사결정 플로우차트"
 author: "tkhwang"
+featured: false
 image:
   url: ""
   alt: ""

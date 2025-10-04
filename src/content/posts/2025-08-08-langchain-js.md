@@ -3,6 +3,7 @@ title: "[LangChain] Javascript 로 LangChain.js 와 LangGraph 사용하기"
 pubDate: 2025-08-08
 description: "간단한 예제로 javascript 로 langchain.js 와 LangGraph 이용하는 예제"
 author: "tkhwang"
+featured: false
 image:
   url: ""
   alt: ""

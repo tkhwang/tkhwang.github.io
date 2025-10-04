@@ -3,6 +3,7 @@ title: "[typescript] try catch 에서 error type 은 ?"
 pubDate: 2024-07-03
 description: "TypeScript try-catch error 타입과 타입 내로잉 활용법"
 author: "tkhwang"
+featured: false
 image:
   url: ""
   alt: ""

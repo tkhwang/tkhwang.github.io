@@ -3,6 +3,7 @@ title: "[typescript] unknown 사용법"
 pubDate: 2024-06-29
 description: "any 대신에 unknown 을 쓰라고 하는데, 어떻게 써야해요 ?"
 author: "tkhwang"
+featured: false
 image:
   url: ""
   alt: ""

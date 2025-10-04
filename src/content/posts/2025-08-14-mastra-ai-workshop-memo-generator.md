@@ -3,6 +3,7 @@ title: "[mastra.ai] mastra.ai 에이전트로 밈 생성기 만들어보기"
 pubDate: 2025-08-14
 description: "mastra.ai를 활용해 회사 짜증나는 상황을 재미있는 밈으로 변환하는 AI 에이전트를 TypeScript로 구현해보는 실습 가이드"
 author: "tkhwang"
+featured: false
 image:
   url: ""
   alt: ""

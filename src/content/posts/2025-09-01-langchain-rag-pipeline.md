@@ -3,6 +3,7 @@ title: "[LangChain.js] RAG pipeline"
 pubDate: 2025-09-01
 description: "LangChain.js로 RAG 파이프라인 구현: 문서 로딩, 텍스트 분할, OpenAI 임베딩 생성, pgvector 저장, 유사도 검색 흐름 정리"
 author: "tkhwang"
+featured: false
 image:
   url: ""
   alt: ""

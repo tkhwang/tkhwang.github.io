@@ -3,6 +3,7 @@ title: "[react.js] React Context Module 패턴: 전역 Context의 한계를 넘�
 pubDate: 2025-06-21
 description: "상태 관리와 비즈니스 로직을 모듈 단위로 구조화하는 방법"
 author: "tkhwang"
+featured: true
 image:
   url: ""
   alt: ""
