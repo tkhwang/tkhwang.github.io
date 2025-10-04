@@ -34,6 +34,6 @@ const currentLocale = Astro.currentLocale;
       )
     }
   </a>
-  <Datetime {pubDatetime} {modDatetime} {timezone} />
-  <p>{description}</p>
+  <p class="mt-2 text-foreground/70">{description}</p>
+  <Datetime class="mt-2" {pubDatetime} {modDatetime} {timezone} />
 </li>
