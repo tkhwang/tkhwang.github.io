@@ -28,7 +28,7 @@ const processedDate = new Date(frontmatter.pubDate?.valueOf());
       <section>
         <hgroup>
           <h1>{frontmatter.title}</h1>
-          <p>Published on: {processedDate.toString().slice(0, 15)}</p>
+          <p>{processedDate.toString().slice(0, 15)}</p>
           <!-- <p>Written by: <a href="/about/">{frontmatter.author}</a></p> -->
           <p>
             <em>{frontmatter.description}</em>
