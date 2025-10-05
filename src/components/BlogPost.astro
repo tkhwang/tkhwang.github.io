@@ -6,43 +6,50 @@ interface Props {
   description: string;
 }
 
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
 const { url, title, pubDate, description } = Astro.props;
 ---
 
-<li>
+<li class="post-item">
   <a href={url} class="post-title">{title}</a>
-  <p><i>{description}</i></p>
-  <small>
-    {months[pubDate.getMonth() - 1]}
-    {pubDate.getDate()}, {pubDate.getFullYear()}
+  <p class="post-description"><i>{description}</i></p>
+  <small class="post-date">
+    {pubDate.toLocaleDateString("ko-KR", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    })}
   </small>
 </li>
 
 <style>
+  .post-item {
+    margin: 0 0 1.5rem;
+  }
+
+  .post-item:last-child {
+    margin-bottom: 0;
+  }
+
   .post-title,
   .post-title:visited {
     color: inherit;
     text-decoration: none;
     font-weight: 700;
+    display: inline-block;
+    margin-bottom: 0.35rem;
   }
 
   .post-title:hover,
   .post-title:focus {
     text-decoration: underline;
+  }
+
+  .post-description {
+    margin: 0 0 0.35rem;
+  }
+
+  .post-date {
+    display: block;
+    margin: 0;
   }
 </style>
