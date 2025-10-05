@@ -15,45 +15,43 @@
 		return theme === 'light' ? 'light' : 'dark'
 	}
 
-	function loadGiscus() {
-		const container = document.getElementById('giscus-container')
-		if (!container) {
-			return
-		}
+    function loadGiscus() {
+        const container = document.getElementById('giscus-container');
+        if (!container) {
+            return;
+        }
 
-		// 기존 iframe 제거
-		const existingIframe = container.querySelector('iframe.giscus-frame')
-		if (existingIframe) {
-			existingIframe.remove()
-		}
+        // Grouping configuration makes it easier to manage.
+        const giscusAttributes = {
+            'data-repo': 'tkhwang/tkhwang-blog-giscus-comments',
+            'data-repo-id': 'R_kgDOHOPQOQ',
+            'data-category': 'General',
+            'data-category-id': 'DIC_kwDOHOPQOc4COvJh',
+            'data-mapping': 'pathname',
+            'data-strict': '0',
+            'data-reactions-enabled': '1',
+            'data-emit-metadata': '0',
+            'data-input-position': 'top',
+            'data-theme': getTheme(),
+            'data-lang': 'ko',
+            'data-loading': 'lazy',
+        };
 
-		// 기존 스크립트가 있으면 제거
-		const existingScript = container.querySelector('script')
-		if (existingScript) {
-			existingScript.remove()
-		}
+        // Clean up previous Giscus instances by clearing the container.
+        container.innerHTML = '';
 
-		// 새 스크립트 생성
-		const script = document.createElement('script')
-		script.src = 'https://giscus.app/client.js'
-		script.setAttribute('data-repo', 'tkhwang/tkhwang-blog-giscus-comments')
-		script.setAttribute('data-repo-id', 'R_kgDOHOPQOQ')
-		script.setAttribute('data-category', 'General')
-		script.setAttribute('data-category-id', 'DIC_kwDOHOPQOc4COvJh')
-		script.setAttribute('data-mapping', 'pathname')
-		script.setAttribute('data-strict', '0')
-		script.setAttribute('data-reactions-enabled', '1')
-		script.setAttribute('data-emit-metadata', '0')
-		script.setAttribute('data-input-position', 'top')
-		script.setAttribute('data-theme', getTheme())
-		script.setAttribute('data-lang', 'ko')
-		script.setAttribute('data-loading', 'lazy')
-		script.setAttribute('crossorigin', 'anonymous')
-		script.async = true
+        // Create and configure the new Giscus script.
+        const script = document.createElement('script');
+        script.src = 'https://giscus.app/client.js';
+        script.crossOrigin = 'anonymous';
+        script.async = true;
 
-		container.appendChild(script)
-	}
+        for (const [key, value] of Object.entries(giscusAttributes)) {
+            script.setAttribute(key, value);
+        }
 
+        container.appendChild(script);
+    }
 	function setGiscusTheme() {
 		const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame')
 		if (!iframe) {
