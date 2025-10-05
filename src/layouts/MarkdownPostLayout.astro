@@ -45,7 +45,7 @@ const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
           {tags.length > 0 ? (
             <div class="post-tags">
               {tags.map((tag: string) => (
-                <a class="secondary" href={`/tags/${tag}`}>
+                <a class="secondary" href={`/tags/${encodeURIComponent(tag)}`}>
                   #{tag}
                 </a>
               ))}
