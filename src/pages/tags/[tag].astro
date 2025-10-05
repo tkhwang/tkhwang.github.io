@@ -20,15 +20,16 @@ export async function getStaticPaths() {
       post.data.tags.includes(tag),
     );
     return {
-      params: { tag },
-      props: { posts: filteredPosts },
+      params: { tag: encodeURIComponent(tag) },
+      props: { posts: filteredPosts, tagLabel: tag },
     };
   });
 }
 
-const { tag } = Astro.params;
-const { posts } = Astro.props;
-const pageTitle = `Tag: ${tag}`;
+const { tag: tagSlug } = Astro.params;
+const { posts, tagLabel } = Astro.props;
+const currentTag = tagLabel ?? decodeURIComponent(tagSlug);
+const pageTitle = `Tag: ${currentTag}`;
 ---
 
 <BaseLayout pageTitle={pageTitle}>

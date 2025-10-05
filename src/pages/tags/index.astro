@@ -24,7 +24,7 @@ const pageTitle = "Tag Index";
       {
         tags.map((tag) => (
           <p>
-            <a href={`/tags/${tag}`}>{tag}</a>
+            <a href={`/tags/${encodeURIComponent(tag)}/`}>{tag}</a>
           </p>
         ))
       }

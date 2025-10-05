@@ -1,0 +1,100 @@
+---
+// https://thezal.dev/article_giscus_astro/
+// https://giscus.app/zh-CN
+// please input your own giscus app info
+---
+
+<section class="giscus mx-auto" id="giscus-container">
+	<!-- Giscus will be loaded here dynamically -->
+</section>
+
+<script>
+	function getTheme() {
+		// 블로그는 data-theme 속성 사용
+		const theme = document.documentElement.dataset.theme
+		return theme === 'light' ? 'light' : 'dark'
+	}
+
+    function loadGiscus() {
+        const container = document.getElementById('giscus-container');
+        if (!container) {
+            return;
+        }
+
+        // Grouping configuration makes it easier to manage.
+        const giscusAttributes = {
+            'data-repo': 'tkhwang/tkhwang-blog-giscus-comments',
+            'data-repo-id': 'R_kgDOHOPQOQ',
+            'data-category': 'General',
+            'data-category-id': 'DIC_kwDOHOPQOc4COvJh',
+            'data-mapping': 'pathname',
+            'data-strict': '0',
+            'data-reactions-enabled': '1',
+            'data-emit-metadata': '0',
+            'data-input-position': 'top',
+            'data-theme': getTheme(),
+            'data-lang': 'ko',
+            'data-loading': 'lazy',
+        };
+
+        // Clean up previous Giscus instances by clearing the container.
+        container.innerHTML = '';
+
+        // Create and configure the new Giscus script.
+        const script = document.createElement('script');
+        script.src = 'https://giscus.app/client.js';
+        script.crossOrigin = 'anonymous';
+        script.async = true;
+
+        for (const [key, value] of Object.entries(giscusAttributes)) {
+            script.setAttribute(key, value);
+        }
+
+        container.appendChild(script);
+    }
+	function setGiscusTheme() {
+		const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame')
+		if (!iframe) {
+			return
+		}
+
+		const theme = getTheme()
+		iframe.contentWindow?.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app')
+	}
+
+	let themeObserver: MutationObserver | null = null
+	// 테마 변경 감지
+	function observeTheme() {
+		// Disconnect previous observer to prevent memory leaks
+		if (themeObserver) {
+			themeObserver.disconnect()
+		}
+		themeObserver = new MutationObserver(() => {
+			// Poll for the iframe to ensure it's loaded before setting the theme.
+			const attemptToSetTheme = (retries = 10) => {
+				const iframe = document.querySelector('iframe.giscus-frame')
+				if (iframe) {
+					setGiscusTheme()
+				} else if (retries > 0) {
+					setTimeout(() => attemptToSetTheme(retries - 1), 100)
+				}
+			}
+			attemptToSetTheme()
+		})
+
+		themeObserver.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['data-theme'],
+		})
+	}
+
+	// 페이지 로드 시 Giscus 로드
+	loadGiscus()
+	observeTheme()
+
+	// Astro 페이지 전환 시 Giscus 다시 로드
+	document.addEventListener('astro:after-swap', () => {
+		loadGiscus()
+		observeTheme()
+	})
+</script>
