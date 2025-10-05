@@ -4,7 +4,15 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import NavWrapper from "@components/NavigationWrapper.astro";
 
 const { frontmatter } = Astro.props;
-const processedDate = new Date(frontmatter.pubDate?.valueOf());
+const processedDate = new Date(frontmatter.pubDate);
+const formattedPubDate = Number.isNaN(processedDate.valueOf())
+  ? String(frontmatter.pubDate)
+  : processedDate.toLocaleDateString("ko-KR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "Asia/Seoul",
+    });
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
@@ -28,7 +36,7 @@ const processedDate = new Date(frontmatter.pubDate?.valueOf());
       <section>
         <hgroup>
           <h1>{frontmatter.title}</h1>
-          <p>Published on: {processedDate.toString().slice(0, 15)}</p>
+          <p>{formattedPubDate}</p>
           <!-- <p>Written by: <a href="/about/">{frontmatter.author}</a></p> -->
           <p>
             <em>{frontmatter.description}</em>
