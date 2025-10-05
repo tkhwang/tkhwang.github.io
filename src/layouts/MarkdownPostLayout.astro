@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import NavWrapper from "@components/NavigationWrapper.astro";
+import Giscus from "@components/Giscus.astro";
 
 const { frontmatter } = Astro.props;
 const pubDate = new Date(frontmatter.pubDate);
@@ -45,7 +46,7 @@ const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
           {tags.length > 0 ? (
             <div class="post-tags">
               {tags.map((tag: string) => (
-                <a class="secondary" href={`/tags/${encodeURIComponent(tag)}`}>
+                <a class="secondary" href={`/tags/${encodeURIComponent(tag)}/`}>
                   #{tag}
                 </a>
               ))}
@@ -56,6 +57,10 @@ const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
       <hr />
       <section>
         <slot />
+      </section>
+      <hr />
+      <section>
+        <Giscus />
       </section>
       <hr />
     </div>
