@@ -1,15 +1,49 @@
 ---
 import Footer from "@components/Footer.astro";
 import { ViewTransitions } from "astro:transitions";
+import {
+  SITE_DESCRIPTION,
+  SITE_LOCALE,
+  SITE_TITLE,
+  SITE_URL,
+} from "../config/site";
 
 interface Props {
   pageTitle: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogType?: string;
+  ogImage?: string;
+  canonical?: string;
 }
 
-const { pageTitle } = Astro.props;
+const {
+  pageTitle,
+  description = SITE_DESCRIPTION,
+  ogTitle = pageTitle,
+  ogDescription = description,
+  ogType = "website",
+  ogImage,
+  canonical,
+} = Astro.props;
+
+const currentUrl = Astro.url;
+const siteOrigin = Astro.site?.origin ?? SITE_URL;
+let canonicalPath: string | undefined;
+if (typeof canonical === "string") {
+  canonicalPath = canonical;
+} else if (currentUrl) {
+  canonicalPath = currentUrl.pathname + currentUrl.search;
+}
+const canonicalUrl =
+  siteOrigin && canonicalPath
+    ? new URL(canonicalPath, siteOrigin).toString()
+    : undefined;
+const ogUrl = canonicalUrl ?? currentUrl?.toString();
 ---
 
-<html lang="en">
+<html lang={SITE_LOCALE.split('_')[0]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -24,6 +58,18 @@ const { pageTitle } = Astro.props;
       href="https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/classic.min.css"
     /> -->
     <link rel="sitemap" href="/sitemap-index.xml" />
+    {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
+    <meta name="description" content={description} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:type" content={ogType} />
+    {ogUrl ? <meta property="og:url" content={ogUrl} /> : null}
+    {SITE_LOCALE ? <meta property="og:locale" content={SITE_LOCALE} /> : null}
+    {ogImage ? <meta property="og:image" content={new URL(ogImage, siteOrigin).toString()} /> : null}
+    <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
     <title>{pageTitle}</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2236137669543501" crossorigin="anonymous"></script>
     <ViewTransitions />

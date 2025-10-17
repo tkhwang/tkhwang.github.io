@@ -15,7 +15,11 @@ const formattedPubDate = Number.isNaN(processedDate.valueOf())
     });
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
+<BaseLayout
+  pageTitle={frontmatter.title}
+  description={frontmatter.description}
+  ogType="article"
+>
   <header>
     <NavWrapper />
   </header>

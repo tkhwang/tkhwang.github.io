@@ -17,7 +17,11 @@ const formattedPubDate = Number.isNaN(pubDate.valueOf())
 const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
+<BaseLayout
+  pageTitle={frontmatter.title}
+  description={frontmatter.description}
+  ogType="article"
+>
   <header>
     <NavWrapper />
   </header>
