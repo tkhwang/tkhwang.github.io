@@ -43,7 +43,7 @@ const canonicalUrl =
 const ogUrl = canonicalUrl ?? currentUrl?.toString();
 ---
 
-<html lang="en">
+<html lang={SITE_LOCALE.split('_')[0]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -66,8 +66,8 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
     <meta property="og:type" content={ogType} />
     {ogUrl ? <meta property="og:url" content={ogUrl} /> : null}
     {SITE_LOCALE ? <meta property="og:locale" content={SITE_LOCALE} /> : null}
-    {ogImage ? <meta property="og:image" content={ogImage} /> : null}
-    <meta name="twitter:card" content="summary" />
+    {ogImage ? <meta property="og:image" content={new URL(ogImage, siteOrigin).toString()} /> : null}
+    <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={ogDescription} />
     <title>{pageTitle}</title>
