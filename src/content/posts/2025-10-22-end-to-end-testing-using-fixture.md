@@ -212,7 +212,6 @@ app.post("/classes", async (req: Request, res: Response) => {
 #### `tests/features/create-class-room.feature`
 
 * 고유한 이름을 갖는 수업 생성 케이스
-    - 테스트 케이스에서 동일한 이름을 사용할 경우, 한 번 수행 시 이후에 다시 실행시에는 동일함 수업이 있어서 실패하게 됨.
 
 ```
 Feature: Create Class Room
@@ -263,6 +262,8 @@ defineFeature(feature, (test) => {
 
 #### `tests/features/create-class-room.feature`
 
+* 고유한 이름을 갖는 수업 생성 케이스
+    - 테스트 케이스에서 동일한 이름을 사용할 경우, 한 번 수행 시 이후에 다시 실행시에는 동일함 수업이 있어서 실패하게 됨.
 ```
 Scenario: Fail to create a class room with duplicate name
         Given there is already a class room named "Math"
@@ -274,7 +275,7 @@ Scenario: Fail to create a class room with duplicate name
 
 테스트에 필요한 데이터를 사전에 손쉽게 만들수 있도록 builder pattern 이용해서 빌더를 만들어서 표현력 좋게 해당 데이터를 만드는 방법이다.
 
-```
+```typescript
 classRoom = await aClassRoom().withName(name).build();
 ```
 
