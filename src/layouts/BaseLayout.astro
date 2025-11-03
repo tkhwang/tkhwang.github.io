@@ -52,7 +52,7 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap"
       rel="stylesheet"
     />
     <link
@@ -80,7 +80,7 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2236137669543501" crossorigin="anonymous"></script>
     <ViewTransitions />
   </head>
-  <body>
+  <body class="ibm-plex-sans-kr-regular">
     <slot />
     <hr />
     <Footer />
@@ -91,8 +91,8 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
 </html>
 
 <style is:global>
-  body {
-    font-family: "Gowun Dodum", sans-serif;
+  .ibm-plex-sans-kr-regular {
+    font-family: "IBM Plex Sans KR", sans-serif;
     font-weight: 400;
     font-style: normal;
   }
