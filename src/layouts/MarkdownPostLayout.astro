@@ -42,20 +42,23 @@ const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
       <section>
         <hgroup>
           <h1>{frontmatter.title}</h1>
-          <p>{formattedPubDate}</p>
-          <!-- <p>Written by: <a href="/about/">{frontmatter.author}</a></p> -->
           <p>
             <em>{frontmatter.description}</em>
           </p>
           {tags.length > 0 ? (
-            <div class="post-tags">
-              {tags.map((tag: string) => (
-                <a class="secondary" href={`/tags/${encodeURIComponent(tag)}/`}>
-                  #{tag}
-                </a>
-              ))}
-            </div>
+            <p class="post-tags">
+              [ {tags.map((tag: string, index: number) => (
+                <>
+                  <a href={`/tags/${encodeURIComponent(tag)}/`}>
+                    {tag}
+                  </a>
+                  {index < tags.length - 1 ? ', ' : ''}
+                </>
+              ))} ]
+            </p>
           ) : null}
+          <p>{formattedPubDate}</p>
+          <!-- <p>Written by: <a href="/about/">{frontmatter.author}</a></p> -->
         </hgroup>
       </section>
       <hr />
@@ -81,13 +84,25 @@ const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
   }
 
   .post-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
     margin: 0;
+    color: var(--pico-muted-color);
   }
 
   .post-tags a {
-    margin: 0;
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #e3f2fd;
+    color: #1976d2;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .post-tags a:hover {
+    background-color: #bbdefb;
+    color: #1565c0;
+    transform: translateY(-1px);
   }
 </style>
