@@ -26,9 +26,10 @@ export async function getStaticPaths() {
   }));
 
   return uniqueTags.map((tag) => {
-    const filteredPosts = orderedPosts.filter((post) =>
-      post.data.tags.includes(tag),
-    );
+    const filteredPosts = orderedPosts.filter((post) => {
+      const tags = Array.isArray(post.data.tags) ? post.data.tags : [];
+      return tags.includes(tag);
+    });
     return {
       params: { tag: encodeURIComponent(tag) },
       props: { posts: filteredPosts, tagLabel: tag, tagCloud },
