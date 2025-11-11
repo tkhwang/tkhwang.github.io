@@ -16,12 +16,13 @@ const featuredPosts = (await getCollection("posts"))
 <ul>
   {
     featuredPosts.map((post) => (
-      <BlogPost
-        url={`/posts/${post.slug}/`}
-        title={post.data.title}
-        pubDate={post.data.pubDate}
-        description={post.data.description}
-      />
+        <BlogPost
+          url={`/posts/${post.slug}/`}
+          title={post.data.title}
+          pubDate={post.data.pubDate}
+          description={post.data.description}
+          tags={post.data.tags}
+        />
     ))
   }
 </ul>

@@ -91,9 +91,82 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
 </html>
 
 <style is:global>
+  :root {
+    --color-text-muted: #9ca3af;
+    --color-tag-bg: #e0edff;
+    --color-tag-bg-hover: #c7dbff;
+    --color-tag-text: #1d4ed8;
+    --color-tag-alt-bg: #e3f2fd;
+    --color-tag-alt-text: #1976d2;
+    --color-tag-alt-hover-bg: #bbdefb;
+    --color-tag-alt-hover-text: #1565c0;
+  }
+
   .ibm-plex-sans-kr-regular {
     font-family: "IBM Plex Sans KR", sans-serif;
     font-weight: 400;
     font-style: normal;
+  }
+
+  /* Constrain content width similar to eugeneyan.com */
+  .container {
+    max-width: 850px;
+  }
+
+  /* Header 상하 여백 줄이기 */
+  header {
+    margin-bottom: 0;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  nav {
+    margin-bottom: 0;
+  }
+
+  /* header 다음 hr 여백 줄이기 */
+  header + hr {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Code block styling - wider than regular content */
+  body.ibm-plex-sans-kr-regular
+    :is(.container pre, .container pre.astro-code, main pre, main pre.astro-code) {
+    max-width: 1000px;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: auto;
+    border-radius: 0.5rem;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Shiki generated code blocks */
+  .astro-code {
+    padding: 1rem;
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 1250px) {
+    body.ibm-plex-sans-kr-regular
+      :is(.container pre, .container pre.astro-code, main pre, main pre.astro-code) {
+      max-width: calc(100vw - 2rem);
+      width: calc(100vw - 2rem);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 850px) {
+    body.ibm-plex-sans-kr-regular
+      :is(.container pre, .container pre.astro-code, main pre, main pre.astro-code) {
+      left: 0;
+      transform: none;
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
   }
 </style>

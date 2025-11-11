@@ -11,25 +11,39 @@ export async function getStaticPaths() {
       new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
   );
 
-  const uniqueTags = [
-    ...new Set(orderedPosts.map((post) => post.data.tags).flat()),
-  ];
+  const tagCountMap = new Map<string, number>();
+  orderedPosts.forEach((post) => {
+    const tags = post.data.tags;
+    tags.forEach((tag) => {
+      tagCountMap.set(tag, (tagCountMap.get(tag) ?? 0) + 1);
+    });
+  });
+
+  const uniqueTags = [...tagCountMap.keys()];
+  const tagCloud = uniqueTags.map((tag) => ({
+    label: tag,
+    count: tagCountMap.get(tag) ?? 0,
+  }));
 
   return uniqueTags.map((tag) => {
-    const filteredPosts = orderedPosts.filter((post) =>
-      post.data.tags.includes(tag),
-    );
+    const filteredPosts = orderedPosts.filter((post) => {
+      const tags = Array.isArray(post.data.tags) ? post.data.tags : [];
+      return tags.includes(tag);
+    });
     return {
       params: { tag: encodeURIComponent(tag) },
-      props: { posts: filteredPosts, tagLabel: tag },
+      props: { posts: filteredPosts, tagLabel: tag, tagCloud },
     };
   });
 }
 
 const { tag: tagSlug } = Astro.params;
-const { posts, tagLabel } = Astro.props;
+const { posts, tagLabel, tagCloud = [] } = Astro.props;
 const currentTag = tagLabel ?? decodeURIComponent(tagSlug);
 const pageTitle = `Tag: ${currentTag}`;
+const sortedTagCloud = tagCloud
+  .slice()
+  .sort((a, b) => a.label.localeCompare(b.label, "ko", { sensitivity: "base" }));
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -38,12 +52,31 @@ const pageTitle = `Tag: ${currentTag}`;
   </header>
   <hr />
   <main class="container">
-    <section>
-      <hgroup>
-        <h1>{pageTitle}</h1>
-        <p>{posts.length} post{posts.length === 1 ? "" : "s"}</p>
-      </hgroup>
+    <section class="tag-hero-section">
+      <h2 class="tag-hero">
+        <span class="tag-label">Tag:</span>
+        <span class="tag-badge">{currentTag}</span>
+        <span class="tag-count">({posts.length})</span>
+      </h2>
     </section>
+    {sortedTagCloud.length > 0 ? (
+      <section class="tag-cloud">
+        <a href="/tags/" class="tag-chip">
+          all
+        </a>
+        {
+          sortedTagCloud.map((tag) => (
+            <a
+              href={`/tags/${encodeURIComponent(tag.label)}/`}
+              class={`tag-chip${tag.label === currentTag ? " active" : ""}`}
+            >
+              {tag.label}
+              <span class="tag-chip-count">{tag.count}</span>
+            </a>
+          ))
+        }
+      </section>
+    ) : null}
     <section>
       <ul>
         {
@@ -53,6 +86,7 @@ const pageTitle = `Tag: ${currentTag}`;
               title={post.data.title}
               pubDate={post.data.pubDate}
               description={post.data.description}
+              tags={post.data.tags}
             />
           ))
         }
@@ -60,3 +94,80 @@ const pageTitle = `Tag: ${currentTag}`;
     </section>
   </main>
 </BaseLayout>
+
+<style>
+  .tag-hero-section {
+    margin-bottom: 1.75rem;
+  }
+
+  .tag-hero {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0;
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .tag-label {
+    color: #6b7280;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .tag-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    background-color: var(--color-tag-bg);
+    color: var(--color-tag-text);
+    font-weight: 700;
+    font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+  }
+
+  .tag-count {
+    color: #374151;
+    font-weight: 600;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+  }
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    background-color: #eef2ff;
+    color: var(--color-tag-text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .tag-chip:hover,
+  .tag-chip:focus {
+    background-color: #dbe7ff;
+  }
+
+  .tag-chip.active {
+    background-color: var(--color-tag-text);
+    color: #fff;
+  }
+
+  .tag-chip-count {
+    font-size: 0.85rem;
+    color: inherit;
+    opacity: 0.8;
+  }
+</style>
