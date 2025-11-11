@@ -7,8 +7,7 @@ interface Props {
   tags?: string[];
 }
 
-const { url, title, pubDate, description, tags = [] } = Astro.props;
-const normalizedTags = Array.isArray(tags) ? tags : [];
+const { url, title, pubDate, description, tags: normalizedTags = [] } = Astro.props;
 ---
 
 <li class="post-item">
