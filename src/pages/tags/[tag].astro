@@ -121,8 +121,8 @@ const sortedTagCloud = tagCloud
     align-items: center;
     padding: 0.3rem 1rem;
     border-radius: 999px;
-    background-color: #e0edff;
-    color: #1d4ed8;
+    background-color: var(--color-tag-bg);
+    color: var(--color-tag-text);
     font-weight: 700;
     font-size: clamp(1.4rem, 3.5vw, 1.9rem);
   }
@@ -147,7 +147,7 @@ const sortedTagCloud = tagCloud
     padding: 0.3rem 0.9rem;
     border-radius: 999px;
     background-color: #eef2ff;
-    color: #1d4ed8;
+    color: var(--color-tag-text);
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 600;
@@ -160,7 +160,7 @@ const sortedTagCloud = tagCloud
   }
 
   .tag-chip.active {
-    background-color: #1d4ed8;
+    background-color: var(--color-tag-text);
     color: #fff;
   }
 

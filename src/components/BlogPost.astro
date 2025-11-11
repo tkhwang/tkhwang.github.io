@@ -88,8 +88,8 @@ const { url, title, pubDate, description, tags: normalizedTags = [] } = Astro.pr
     align-items: center;
     padding: 0.2rem 0.65rem;
     border-radius: 999px;
-    background-color: #e0edff;
-    color: #1d4ed8;
+    background-color: var(--color-tag-bg);
+    color: var(--color-tag-text);
     font-size: 0.85rem;
     font-weight: 600;
     text-decoration: none;
@@ -98,6 +98,6 @@ const { url, title, pubDate, description, tags: normalizedTags = [] } = Astro.pr
 
   .tag-chip:hover,
   .tag-chip:focus {
-    background-color: #c7dbff;
+    background-color: var(--color-tag-bg-hover);
   }
 </style>
