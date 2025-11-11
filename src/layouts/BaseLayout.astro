@@ -102,6 +102,23 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
     max-width: 850px;
   }
 
+  /* Header 상하 여백 줄이기 */
+  header {
+    margin-bottom: 0;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  nav {
+    margin-bottom: 0;
+  }
+
+  /* header 다음 hr 여백 줄이기 */
+  header + hr {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
   /* Code block styling - wider than regular content */
   .container pre,
   .container pre.astro-code,
