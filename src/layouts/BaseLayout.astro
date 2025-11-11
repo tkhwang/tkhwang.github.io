@@ -96,4 +96,55 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
     font-weight: 400;
     font-style: normal;
   }
+
+  /* Constrain content width similar to eugeneyan.com */
+  .container {
+    max-width: 850px;
+  }
+
+  /* Code block styling - wider than regular content */
+  .container pre,
+  .container pre.astro-code,
+  main pre,
+  main pre.astro-code {
+    max-width: 1000px !important;
+    width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    overflow-x: auto !important;
+    border-radius: 0.5rem;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Shiki generated code blocks */
+  .astro-code {
+    padding: 1rem;
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 1250px) {
+    .container pre,
+    .container pre.astro-code,
+    main pre,
+    main pre.astro-code {
+      max-width: calc(100vw - 2rem) !important;
+      width: calc(100vw - 2rem) !important;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 850px) {
+    .container pre,
+    .container pre.astro-code,
+    main pre,
+    main pre.astro-code {
+      left: 0;
+      transform: none;
+      margin-left: 1rem !important;
+      margin-right: 1rem !important;
+    }
+  }
 </style>
