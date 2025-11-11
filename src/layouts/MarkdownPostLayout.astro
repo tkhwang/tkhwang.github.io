@@ -42,9 +42,7 @@ const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
       <section>
         <hgroup>
           <h1>{frontmatter.title}</h1>
-          <p>
-            <em>{frontmatter.description}</em>
-          </p>
+          <p class="post-description">{frontmatter.description}</p>
           {tags.length > 0 ? (
             <p class="post-tags">
               [ {tags.map((tag: string, index: number) => (
@@ -80,6 +78,12 @@ const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
   }
 
   hgroup p {
+    margin-bottom: 0.75rem;
+  }
+
+  .post-description {
+    color: #9ca3af;
+    font-weight: 500;
     margin-bottom: 0.75rem;
   }
 

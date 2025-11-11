@@ -4,21 +4,36 @@ interface Props {
   title: string;
   pubDate: Date;
   description: string;
+  tags?: string[];
 }
 
-const { url, title, pubDate, description } = Astro.props;
+const { url, title, pubDate, description, tags = [] } = Astro.props;
+const normalizedTags = Array.isArray(tags) ? tags : [];
 ---
 
 <li class="post-item">
   <a href={url} class="post-title">{title}</a>
-  <p class="post-description"><i>{description}</i></p>
-  <small class="post-date">
-    {pubDate.toLocaleDateString("ko-KR", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    })}
-  </small>
+  <p class="post-description">{description}</p>
+  <div class="post-meta">
+    <small class="post-date">
+      {pubDate.toLocaleDateString("ko-KR", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      })}
+    </small>
+    {normalizedTags.length > 0 ? (
+      <div class="post-tags">
+        {
+          normalizedTags.map((tag) => (
+            <a href={`/tags/${encodeURIComponent(tag)}/`} class="tag-chip">
+              {tag}
+            </a>
+          ))
+        }
+      </div>
+    ) : null}
+  </div>
 </li>
 
 <style>
@@ -46,10 +61,44 @@ const { url, title, pubDate, description } = Astro.props;
 
   .post-description {
     margin: 0 0 0.35rem;
+    color: #9ca3af;
   }
 
   .post-date {
-    display: block;
     margin: 0;
+    font-size: 0.95rem;
+    color: var(--pico-muted-color);
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.35rem;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background-color: #e0edff;
+    color: #1d4ed8;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .tag-chip:hover,
+  .tag-chip:focus {
+    background-color: #c7dbff;
   }
 </style>

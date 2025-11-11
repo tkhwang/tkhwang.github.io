@@ -85,6 +85,7 @@ const sortedTagCloud = tagCloud
               title={post.data.title}
               pubDate={post.data.pubDate}
               description={post.data.description}
+              tags={Array.isArray(post.data.tags) ? post.data.tags : []}
             />
           ))
         }
