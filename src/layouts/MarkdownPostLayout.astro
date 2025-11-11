@@ -82,7 +82,7 @@ const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
   }
 
   .post-description {
-    color: #9ca3af;
+    color: var(--color-text-muted);
     font-weight: 500;
     margin-bottom: 0.75rem;
   }
@@ -95,18 +95,19 @@ const tags = Array.isArray(frontmatter.tags) ? frontmatter.tags : [];
   .post-tags a {
     display: inline-block;
     padding: 0.25rem 0.75rem;
-    background-color: #e3f2fd;
-    color: #1976d2;
+    background-color: var(--color-tag-alt-bg);
+    color: var(--color-tag-alt-text);
     text-decoration: none;
     border-radius: 0.25rem;
     font-size: 0.875rem;
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease,
+      transform 0.2s ease;
   }
 
   .post-tags a:hover {
-    background-color: #bbdefb;
-    color: #1565c0;
+    background-color: var(--color-tag-alt-hover-bg);
+    color: var(--color-tag-alt-hover-text);
     transform: translateY(-1px);
   }
 </style>

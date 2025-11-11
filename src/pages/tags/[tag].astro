@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
   const tagCountMap = new Map<string, number>();
   orderedPosts.forEach((post) => {
-    const tags = Array.isArray(post.data.tags) ? post.data.tags : [];
+    const tags = post.data.tags;
     tags.forEach((tag) => {
       tagCountMap.set(tag, (tagCountMap.get(tag) ?? 0) + 1);
     });
@@ -85,7 +85,7 @@ const sortedTagCloud = tagCloud
               title={post.data.title}
               pubDate={post.data.pubDate}
               description={post.data.description}
-              tags={Array.isArray(post.data.tags) ? post.data.tags : []}
+              tags={post.data.tags}
             />
           ))
         }
