@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import NavWrapper from "@components/NavigationWrapper.astro";
+import BlogPost from "@components/BlogPost.astro";
+
+const featuredPosts = (await getCollection("posts"))
+  .filter((post) => post.data.featured)
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+  );
+const pageTitle: string = "추천 글";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <header>
+    <NavWrapper />
+  </header>
+  <hr />
+  <main class="container">
+    <section>
+      <hgroup>
+        <h1>{pageTitle}</h1>
+        <p>블로그에서 선별된 추천 글입니다.</p>
+      </hgroup>
+    </section>
+    {
+      featuredPosts.length > 0 ? (
+        <section>
+          <ul>
+            {
+              featuredPosts.map((post) => (
+                <BlogPost
+                  url={`/posts/${post.slug}/`}
+                  title={post.data.title}
+                  pubDate={post.data.pubDate}
+                  description={post.data.description}
+                  tags={post.data.tags}
+                />
+              ))
+            }
+          </ul>
+        </section>
+      ) : (
+        <section>
+          <p>Featured posts will appear here soon.</p>
+        </section>
+      )
+    }
+  </main>
+</BaseLayout>

@@ -10,7 +10,7 @@ const featuredPosts = (await getCollection("posts"))
     const bTime = new Date(b.data.pubDate).getTime();
     return bTime - aTime;
   })
-  .slice(0, 3);
+  .slice(0, 5);
 ---
 
 <ul>
