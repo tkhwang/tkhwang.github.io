@@ -100,6 +100,11 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
     --color-tag-alt-text: #1976d2;
     --color-tag-alt-hover-bg: #bbdefb;
     --color-tag-alt-hover-text: #1565c0;
+    --color-divider: rgba(0, 0, 0, 0.15);
+  }
+
+  :root[data-theme="dark"] {
+    --color-divider: rgba(255, 255, 255, 0.25);
   }
 
   .ibm-plex-sans-kr-regular {

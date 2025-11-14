@@ -2,7 +2,7 @@
 interface Props {
   title: string;
   heading: string | undefined | null;
-  description: string | undefined | null;
+  description?: string | undefined | null;
 }
 
 const { title, heading = "2", description } = Astro.props;

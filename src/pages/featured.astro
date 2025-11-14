@@ -10,7 +10,7 @@ const featuredPosts = (await getCollection("posts"))
     (a, b) =>
       new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
   );
-const pageTitle: string = "Featured Posts";
+const pageTitle: string = "추천 글";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -22,7 +22,7 @@ const pageTitle: string = "Featured Posts";
     <section>
       <hgroup>
         <h1>{pageTitle}</h1>
-        <p>Highlights curated from the blog.</p>
+        <p>블로그에서 선별된 추천 글입니다.</p>
       </hgroup>
     </section>
     {
