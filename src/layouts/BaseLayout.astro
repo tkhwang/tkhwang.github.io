@@ -92,6 +92,7 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
 
 <style is:global>
   :root {
+    --content-max-width: min(1120px, 94vw);
     --color-text-muted: #9ca3af;
     --color-tag-bg: #e0edff;
     --color-tag-bg-hover: #c7dbff;
@@ -115,8 +116,9 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
 
   /* Constrain content width (looser for all pages) */
   .container {
-    max-width: min(1120px, 94vw);
+    max-width: var(--content-max-width);
     padding-inline: 1rem;
+    width: 100%;
   }
 
   /* Header 상하 여백 줄이기 */
@@ -139,15 +141,15 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
   /* Code block styling - wider than regular content */
   body.ibm-plex-sans-kr-regular
     :is(.container pre, .container pre.astro-code, main pre, main pre.astro-code) {
-    max-width: 1000px;
-    width: 1000px;
+    max-width: var(--content-max-width);
+    width: var(--content-max-width);
     margin-left: auto;
     margin-right: auto;
     overflow-x: auto;
     border-radius: 0.5rem;
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    left: auto;
+    transform: none;
   }
 
   /* Shiki generated code blocks */
@@ -161,8 +163,8 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
       :is(.container pre, .container pre.astro-code, main pre, main pre.astro-code) {
       max-width: calc(100vw - 2rem);
       width: calc(100vw - 2rem);
-      left: 50%;
-      transform: translateX(-50%);
+      left: auto;
+      transform: none;
     }
   }
 
