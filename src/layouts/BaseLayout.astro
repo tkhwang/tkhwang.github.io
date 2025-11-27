@@ -103,10 +103,12 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
     --color-tag-alt-hover-bg: #bbdefb;
     --color-tag-alt-hover-text: #1565c0;
     --color-divider: rgba(0, 0, 0, 0.15);
+    --strong-text-color: #0f172a;
   }
 
   :root[data-theme="dark"] {
     --color-divider: rgba(255, 255, 255, 0.25);
+    --strong-text-color: #e5e7eb;
   }
 
   .ibm-plex-sans-kr-regular {
@@ -190,5 +192,12 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
     font-weight: 600;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
+  }
+
+  /* Make Markdown bold stand out more */
+  main :is(p, li, blockquote, figcaption, td, th) :is(strong, b) {
+    font-weight: 750;
+    color: var(--strong-text-color);
+    letter-spacing: 0.01em;
   }
 </style>
