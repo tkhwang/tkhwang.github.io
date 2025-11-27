@@ -12,7 +12,7 @@ const orderedPosts = allPosts.sort(
 <ul>
   {
     orderedPosts
-      .slice(0, 3)
+      .slice(0, 20)
       .map((post) => (
         <BlogPost
           url={`/posts/${post.slug}/`}

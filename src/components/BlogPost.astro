@@ -11,8 +11,6 @@ const { url, title, pubDate, description, tags: normalizedTags = [] } = Astro.pr
 ---
 
 <li class="post-item">
-  <a href={url} class="post-title">{title}</a>
-  <p class="post-description">{description}</p>
   <div class="post-meta">
     <small class="post-date">
       {pubDate.toLocaleDateString("ko-KR", {
@@ -33,6 +31,9 @@ const { url, title, pubDate, description, tags: normalizedTags = [] } = Astro.pr
       </div>
     ) : null}
   </div>
+  <a href={url} class="post-title">{title}</a>
+  <p class="post-description">{description}</p>
+
 </li>
 
 <style>
@@ -75,6 +76,7 @@ const { url, title, pubDate, description, tags: normalizedTags = [] } = Astro.pr
     flex-wrap: wrap;
     gap: 0.35rem;
     margin-top: 0.35rem;
+    margin-bottom: 0.25rem;
   }
 
   .post-tags {

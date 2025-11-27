@@ -113,9 +113,10 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
     font-style: normal;
   }
 
-  /* Constrain content width similar to eugeneyan.com */
+  /* Constrain content width (looser for all pages) */
   .container {
-    max-width: 850px;
+    max-width: min(1120px, 94vw);
+    padding-inline: 1rem;
   }
 
   /* Header 상하 여백 줄이기 */

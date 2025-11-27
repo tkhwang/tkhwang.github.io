@@ -16,7 +16,7 @@ const pageTitle: string = "Where Code Meets Design";
     <NavWrapper />
   </header>
   <hr />
-  <main class="container">
+  <main class="container home">
     <section>
       <hgroup>
         <h1>{pageTitle}</h1>
@@ -82,13 +82,38 @@ const pageTitle: string = "Where Code Meets Design";
     color: var(--color-text-muted);
     font-weight: 500;
   }
+ 
+  main.home {
+    max-width: min(1120px, 94vw);
+    padding-inline: 1rem;
+    font-size: 0.96rem;
+  }
+
+  main.home h1 {
+    font-size: clamp(1.9rem, 2.6vw, 2.25rem);
+    margin-bottom: 0.25rem;
+  }
+
+  main.home p {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    margin-bottom: 0.6rem;
+  }
+
+  main.home .intro-muted {
+    font-size: 0.9rem;
+  }
+
+  main.home section + section {
+    margin-top: 1.75rem;
+  }
 
   .section-divider {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin: 2.5rem 0 1.5rem;
+    margin: 1.75rem 0 1rem;
   }
 
   .section-divider__title {
@@ -98,7 +123,7 @@ const pageTitle: string = "Where Code Meets Design";
   }
 
   .section-divider__title span {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 
   .section-divider__title :global(h3) {
@@ -114,7 +139,7 @@ const pageTitle: string = "Where Code Meets Design";
   }
 
   .section-divider__link {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-transform: none;
     text-decoration: none;
     color: var(--color-text-muted);
@@ -128,6 +153,15 @@ const pageTitle: string = "Where Code Meets Design";
   }
 
   @media (max-width: 640px) {
+    main.home {
+      padding-inline: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    main.home h1 {
+      font-size: 1.75rem;
+    }
+
     .section-divider {
       gap: 0.5rem;
     }
