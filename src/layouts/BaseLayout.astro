@@ -93,6 +93,7 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
 <style is:global>
   :root {
     --content-max-width: min(1120px, 94vw);
+    --code-max-width: min(1320px, 96vw);
     --color-text-muted: #9ca3af;
     --color-tag-bg: #e0edff;
     --color-tag-bg-hover: #c7dbff;
@@ -138,18 +139,16 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
     margin-bottom: 1rem;
   }
 
-  /* Code block styling - wider than regular content */
+  /* Code block styling - wider than regular content (breakout effect) */
   body.ibm-plex-sans-kr-regular
     :is(.container pre, .container pre.astro-code, main pre, main pre.astro-code) {
-    max-width: var(--content-max-width);
-    width: var(--content-max-width);
-    margin-left: auto;
-    margin-right: auto;
+    max-width: var(--code-max-width);
+    width: var(--code-max-width);
+    margin-left: 50%;
+    transform: translateX(-50%);
     overflow-x: auto;
     border-radius: 0.5rem;
     position: relative;
-    left: auto;
-    transform: none;
   }
 
   /* Shiki generated code blocks */
@@ -158,23 +157,23 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
   }
 
   /* Mobile responsive */
-  @media (max-width: 1250px) {
+  @media (max-width: 1400px) {
     body.ibm-plex-sans-kr-regular
       :is(.container pre, .container pre.astro-code, main pre, main pre.astro-code) {
       max-width: calc(100vw - 2rem);
       width: calc(100vw - 2rem);
-      left: auto;
-      transform: none;
+      margin-left: 50%;
+      transform: translateX(-50%);
     }
   }
 
   @media (max-width: 850px) {
     body.ibm-plex-sans-kr-regular
       :is(.container pre, .container pre.astro-code, main pre, main pre.astro-code) {
-      left: 0;
-      transform: none;
-      margin-left: 1rem;
-      margin-right: 1rem;
+      max-width: calc(100vw - 2rem);
+      width: calc(100vw - 2rem);
+      margin-left: 50%;
+      transform: translateX(-50%);
     }
   }
 
