@@ -59,6 +59,10 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css"
+    />
     <!-- <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/classic.min.css"
@@ -199,5 +203,14 @@ const ogUrl = canonicalUrl ?? currentUrl?.toString();
     font-weight: 750;
     color: var(--strong-text-color);
     letter-spacing: 0.01em;
+  }
+
+  /* KaTeX display math left alignment */
+  .katex-display {
+    text-align: left !important;
+  }
+
+  .katex-display > .katex {
+    display: inline-block;
   }
 </style>
