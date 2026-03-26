@@ -59,49 +59,62 @@ AI가 코드를 잘 짜는 시대에 개발자의 역할은 도메인 지식과 
 - **객체 위주 사고방식**: 도메인 우선, Value Object + Entity, 도메인에 로직 응집
 - 예제 도메인: 주문 관리 (상태 전이 + VIP 환불 정책)로 Before/After 비교
 - 핵심 차이 요약표
-- Ch.3~4로의 브릿지: "이 사고방식을 SDD와 TDD로 어떻게 실천하는가?"
+- Ch.3~6으로의 브릿지: "DDD를 이해하고, 설계하고, Spec과 TDD로 어떻게 실천하는가?"
 
 ---
 
-## Part 2: SDD + TDD 실전 (2편)
+## Part 2: DDD + 설계 + SDD + TDD 실전 (4편)
 
-### Ch.3: SDD — 도메인 객체를 Spec으로 설계하기
+### Ch.3: DDD — Value Object, Entity, Aggregate 이해하기
 
-- SDD(Spec-Driven Development)란: 구현 전에 Spec을 먼저 정의하는 개발 방식
-- 도메인 객체의 Spec을 정하는 과정을 시연
-- Value Object 식별 및 Spec 정의 (Name, Email, Money 등)
-- Entity 설계 및 Spec 정의 (User가 가져야 할 행위, 비즈니스 규칙)
+- DDD의 핵심 Building Block 설명
+- Value Object와 Entity의 차이
+- Aggregate, Domain Service, Repository의 역할
+- OOP와 FP의 보완 관계
+- **산출물**: DDD 기본 어휘와 판단 기준
+
+### Ch.4: 설계 — 요구사항에서 도메인 객체 뽑아내기
+
+- 요구사항을 다시 읽으며 도메인에서 의미 있는 값과 주체를 식별
+- Value Object 후보와 Entity 후보를 구분
+- 왜 Value Object부터 시작하는지 설명
+- **산출물**: 모델링 대상 객체 후보 목록
+
+### Ch.5: SDD — 도메인 객체를 Spec으로 설계하기
+
+- Ch.4에서 고른 Value Object를 대상으로 Spec 정의
+- AI와의 대화로 생성 규칙, 행동, 불변 조건, 동등성 정리
 - **산출물**: 도메인 객체의 완성된 Spec 문서
 
-### Ch.4: TDD — Spec에서 테스트로, 테스트에서 구현으로
+### Ch.6: TDD — Spec에서 테스트로, 테스트에서 구현으로
 
-- Ch.3에서 정의한 Spec이 확정된 상태에서 TDD로 구현
+- Ch.5에서 정의한 Spec이 확정된 상태에서 TDD로 구현
 - Spec 문장 → 테스트 이름 → 테스트 코드 → 구현의 자연스러운 흐름
 - Red-Green-Refactor 사이클 시연
 - **산출물**: Spec을 만족하는 테스트 + 구현 코드
 
-### Ch.5: Aggregate — 일관성의 경계
+### Ch.7: Aggregate — 일관성의 경계
 
 - **Spec**: Project 애그리거트 — Task 추가/제거, 동시 진행 Task 수 제한, Project 완료 조건
 - **TDD**: Aggregate Root를 통한 조작만 허용, 불변식(invariant) 위반 시 에러
 - **구현**: Task 컬렉션을 가진 Project 애그리거트, 트랜잭션 경계 설계
 - 핵심 교훈: Aggregate 외부에서 Task를 직접 수정하면 안 되는 이유
 
-### Ch.6: 도메인 서비스 & 도메인 이벤트
+### Ch.8: 도메인 서비스 & 도메인 이벤트
 
 - **Spec**: TaskAssignmentService (담당자 배정 로직), TaskCompleted 이벤트
 - **TDD**: 여러 엔티티에 걸친 비즈니스 로직 검증, 이벤트 발행 확인
 - **구현**: 순수 도메인 서비스 (외부 의존성 없음), 도메인 이벤트 패턴
 - 판단 기준: 엔티티에 넣을지 도메인 서비스로 뺄지
 
-### Ch.7: 리포지토리 인터페이스 & 애플리케이션 서비스
+### Ch.9: 리포지토리 인터페이스 & 애플리케이션 서비스
 
 - **Spec**: 리포지토리 계약 (Port 정의), 유스케이스 (CreateTask, AssignTask, CompleteProject)
 - **TDD**: 인메모리 리포지토리로 도메인 전체 통합 테스트
 - **구현**: 리포지토리 인터페이스 (Port), 애플리케이션 서비스 (유스케이스 오케스트레이션)
 - **테제 증명**: "여기까지 프레임워크 코드 0줄. 순수 TypeScript + 도메인 로직만으로 전체 비즈니스가 TDD 검증됨"
 
-### Ch.8 (선택): Spec-Driven Development 실전 시연
+### Ch.10 (선택): Spec-Driven Development 실전 시연
 
 - 새 기능 "스프린트 관리"를 AI와 함께 처음부터 진행
 - AI와 Spec 논의 → Spec 문서 작성 → TDD 테스트케이스 도출 → Red-Green-Refactor
@@ -112,14 +125,14 @@ AI가 코드를 잘 짜는 시대에 개발자의 역할은 도메인 지식과 
 
 ## Part 3: 프레임워크 연동 — 도메인을 꽂다 (3편)
 
-### Ch.9: 백엔드 — NestJS에 도메인 연결하기
+### Ch.11: 백엔드 — NestJS에 도메인 연결하기
 
 - 인프라스트럭처 계층: 리포지토리 구현 (Prisma 또는 TypeORM)
 - NestJS 모듈 구조: domain/ → application/ → infrastructure/ → presentation/
 - Controller → 애플리케이션 서비스 → 도메인 모델 흐름
 - **결정적 증명**: "Part 2에서 만든 도메인 코드를 한 줄도 수정하지 않고 NestJS에 연결"
 
-### Ch.10: 프론트엔드 DDD — 단계별 적용
+### Ch.12: 프론트엔드 DDD — 단계별 적용
 
 - **Level 0**: API 응답을 그대로 사용 (빈약한 모델, 조건문 산재)
 - **Level 1**: DTO → 도메인 모델 hydration (응답에서 도메인 객체로 변환)
@@ -127,7 +140,7 @@ AI가 코드를 잘 짜는 시대에 개발자의 역할은 도메인 지식과 
 - 각 단계별 코드 비교 + 트레이드오프
 - "어디까지 적용할지는 팀과 프로젝트 상황에 따라 결정"
 
-### Ch.11: 풀스택 통합 — 모노레포에서 도메인 공유
+### Ch.13: 풀스택 통합 — 모노레포에서 도메인 공유
 
 - 모노레포 구조: packages/domain (공유) + apps/backend + apps/frontend
 - 백엔드/프론트엔드 동일 도메인 모델 사용
@@ -139,7 +152,7 @@ AI가 코드를 잘 짜는 시대에 개발자의 역할은 도메인 지식과 
 
 ## Part 4: 총정리 (1편)
 
-### Ch.12: AI 시대의 Spec-Driven DDD 워크플로우 완성
+### Ch.14: AI 시대의 Spec-Driven DDD 워크플로우 완성
 
 - 전체 워크플로우 다이어그램: Spec → TDD → 도메인 → 프레임워크 연동
 - 시리즈에서 만든 코드의 아키텍처 전체도
@@ -164,7 +177,9 @@ AI가 코드를 잘 짜는 시대에 개발자의 역할은 도메인 지식과 
 ```
 src/content/posts/xdd-ch01-framework-to-domain.md
 src/content/posts/xdd-ch02-same-requirements-different-code.md
-src/content/posts/xdd-ch03-value-object.md
+src/content/posts/xdd-ch03-what-is-ddd.md
+src/content/posts/xdd-ch04-requirements-to-objects.md
+src/content/posts/xdd-ch05-sdd-spec.md
 ...
 ```
 
