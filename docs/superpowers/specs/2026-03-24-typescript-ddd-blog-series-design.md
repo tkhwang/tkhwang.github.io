@@ -1,4 +1,4 @@
-# AI 시대의 TypeScript DDD: Spec에서 코드까지 — 블로그 시리즈 설계
+# AI 시대의 SDD+TDD+DDD: Spec에서 코드까지 — 블로그 시리즈 설계
 
 ## 핵심 테제
 
@@ -23,59 +23,62 @@ AI가 코드를 잘 짜는 시대에 개발자의 역할은 도메인 지식과 
 
 ---
 
-## Part 1: MVC에서 DDD로, AI 시대의 발견 (2편)
+## Part 1: 프레임워크에서 Domain으로, AI 시대의 발견 (2편)
 
-### Ch.1: MVC에서 DDD로, 그리고 AI 시대의 발견
+### Ch.1: 프레임워크에서 Domain으로, AI 시대의 개발 방법론 ✅
 
-서사 흐름: **문제 인식 → 해법 발견 → 더 큰 가치 깨달음**
+서사 흐름: **문제 인식 → AI 시대 역할 전환 → SDD/DDD+TDD 해법 제시**
 
-#### 1. MVC의 문제점 — 데이터 중심 프로그래밍의 한계
+파일: `src/content/posts/xdd-ch01-framework-to-domain.md`
 
-- 태스크 관리 앱을 MVC로 구현한 코드 예시
-- 비즈니스 로직이 Controller/Service에 분산
-- 상태 전이 로직 중복, 유효성 검증 누락
-- 복잡도 증가 시 유지보수 붕괴
+#### 1. 프레임워크 중심 + 데이터 중심 개발의 한계
 
-#### 2. DDD라는 대안 — 도메인 중심으로 전환
+- 끝없는 프레임워크 학습의 반복 (Spring → Express → NestJS, jQuery → React → Next.js)
+- 프레임워크 패턴(MVC)을 따르면 자연스럽게 데이터 중심 프로그래밍으로 귀결
+- 비즈니스 로직이 Controller/Service에 분산 → 응집성 ↓ 복잡도 ↑
+- 인과 관계: 프레임워크 중심 학습 → 데이터 중심 설계 → 유지보수 붕괴
 
-- 도메인 모델에 비즈니스 로직 응집
-- Building Block 소개 (Entity, Value Object, Aggregate 등)
-- 같은 문제를 DDD로 풀면 어떻게 달라지는지 미리보기
+#### 2. AI 시대, 역할이 뒤바뀌다
 
-#### 3. 알고 보니, AI 시대에 딱이었다 — Spec + TDD + DDD 시너지
+- AI가 프레임워크 작업을 더 잘함 (CRUD, 보일러플레이트, 마이그레이션)
+- 반면 비즈니스 고유의 도메인 문제는 AI가 모름
+- 개발자의 역할 재정의: Framework → AI 위임, Domain → 개발자 집중
 
-- Spec 정의 → AI가 이해 가능한 명확한 요구사항
-- TDD → AI 생성 코드의 자동 검증 장치
-- 프레임워크에 의존하지 않는 도메인 → AI/프레임워크 교체에 안전
-- **"처음엔 MVC 한계 때문에 DDD를 찾았는데, AI와 일하다 보니 Spec+TDD+DDD가 최적이었다"**
+#### 3. SDD/DDD + TDD — AI 시대의 개발 방법론
 
-### Ch.2: Before/After — 코드로 증명하기
+- Domain 중심 OOP: 행위를 가진 도메인 객체, Building Block 소개
+- Framework Agnostic + POJO: mock 없이 TDD 가능
+- SDD (Spec-Driven Development): AI와 Spec 먼저 정의 → TDD → 구현
+- AI closed loop: Spec → Test → Implementation 닫힌 루프
+- **SDD + TDD + DDD = AI 시대의 개발 방법론** 테제 선언
 
-- 동일한 요구사항: "태스크 상태를 변경하고 담당자에게 알림"
-- **Before (MVC)**: Controller에 로직 분산, 테스트 어려움, AI에게 "이거 만들어줘" → 검증 불가
-- **After (DDD)**: 도메인 모델 중심, Spec에서 TDD 자연 도출, AI가 프레임워크 코드 생성
-- Spec → TDD → 구현 워크플로우 미리보기
-- 이 시리즈에서 만들 것의 로드맵 제시
+### Ch.2: 사고방식 비교 — 데이터 위주 vs 객체 위주
+
+- **모델링 비교 도입**: 기본형(string, number) vs Value Object(Name, Email, Money) — Customer 클래스 비교로 한눈에 차이를 보여줌
+- **데이터 위주 사고방식**: DB 우선, 기본형 사용, 빈혈 도메인 모델, Service에 로직 분산
+- **객체 위주 사고방식**: 도메인 우선, Value Object + Entity, 도메인에 로직 응집
+- 예제 도메인: 주문 관리 (상태 전이 + VIP 환불 정책)로 Before/After 비교
+- 핵심 차이 요약표
+- Ch.3~4로의 브릿지: "이 사고방식을 SDD와 TDD로 어떻게 실천하는가?"
 
 ---
 
-## Part 2: 도메인 Building Blocks — Spec→TDD→구현 (5~6편)
+## Part 2: SDD + TDD 실전 (2편)
 
-매 편 동일 리듬: **Spec 정의 → TDD 테스트 작성 → 구현 → AI 활용 팁**
+### Ch.3: SDD — 도메인 객체를 Spec으로 설계하기
 
-### Ch.3: Value Object — 의미 있는 값 만들기
+- SDD(Spec-Driven Development)란: 구현 전에 Spec을 먼저 정의하는 개발 방식
+- 도메인 객체의 Spec을 정하는 과정을 시연
+- Value Object 식별 및 Spec 정의 (Name, Email, Money 등)
+- Entity 설계 및 Spec 정의 (User가 가져야 할 행위, 비즈니스 규칙)
+- **산출물**: 도메인 객체의 완성된 Spec 문서
 
-- **Spec**: TaskTitle (1~100자), Priority (high/medium/low), TaskStatus (todo/in-progress/done/cancelled)
-- **TDD**: 불변성 검증, 동등성 비교, 유효성 검증 (빈 문자열, 범위 초과 등)
-- **구현**: TypeScript class로 Value Object 패턴 (private constructor, factory method)
-- **AI 팁**: Spec 문서로 AI에게 Value Object 생성 요청 → TDD로 검증하는 흐름
+### Ch.4: TDD — Spec에서 테스트로, 테스트에서 구현으로
 
-### Ch.4: Entity — 생명주기를 가진 객체
-
-- **Spec**: Task 엔티티 — 상태 전이 규칙 (todo→in-progress→done, done→cancelled 불가 등)
-- **TDD**: 생성 시 기본값, 상태 전이 성공/실패, 비즈니스 룰 위반 시 에러
-- **구현**: 풍부한 행위를 가진 Task 엔티티 (메서드가 비즈니스 로직을 가짐)
-- Value Object vs Entity 비교: 식별자 유무, 동등성 기준 차이
+- Ch.3에서 정의한 Spec이 확정된 상태에서 TDD로 구현
+- Spec 문장 → 테스트 이름 → 테스트 코드 → 구현의 자연스러운 흐름
+- Red-Green-Refactor 사이클 시연
+- **산출물**: Spec을 만족하는 테스트 + 구현 코드
 
 ### Ch.5: Aggregate — 일관성의 경계
 
@@ -152,16 +155,16 @@ AI가 코드를 잘 짜는 시대에 개발자의 역할은 도메인 지식과 
 
 현재 블로그에는 시리즈/컬렉션 메커니즘이 없으므로:
 
-1. **태그 기반 그룹핑**: `typescript-ddd` 태그로 시리즈 전체를 묶음
-2. **제목 접두어**: `[TypeScript DDD] Ch.N:` 형태로 순서 표시
+1. **태그 기반 그룹핑**: `ddd`, `sdd` 태그로 시리즈 전체를 묶음
+2. **제목 접두어**: `[SDD+TDD+DDD] Ch.N:` 형태로 순서 표시
 3. **기존 스키마 활용**: frontmatter 변경 불필요
 
 ### 포스트 파일명 규칙
 
 ```
-src/content/posts/typescript-ddd-ch01-mvc-to-ddd-ai-era.md
-src/content/posts/typescript-ddd-ch02-before-after.md
-src/content/posts/typescript-ddd-ch03-value-object.md
+src/content/posts/xdd-ch01-framework-to-domain.md
+src/content/posts/xdd-ch02-before-after.md
+src/content/posts/xdd-ch03-value-object.md
 ...
 ```
 
