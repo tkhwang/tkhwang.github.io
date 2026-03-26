@@ -72,6 +72,92 @@
 - 전환 시점에는 각 글 도입부에서 "도입 예제 -> 본편 예제" 전환을 명시한다
 - Aggregate, Domain Service, Repository부터는 상태 전이와 일관성 경계가 잘 드러나는 예제를 사용한다
 
+## 본편 실전 예제 후보
+
+본편에서 사용할 실전 예제는 `Jira`나 `Linear` 같은 작업 운영 도구 계열이 적합하다.
+다만 팀 협업 SaaS 전체를 만들겠다는 뜻은 아니다. 그 안의 핵심 도메인만 가져온, 개인이 실제로 사용할 수 있는 작은 작업 운영 도구로 범위를 줄인다.
+
+즉 방향은 이렇다.
+
+- `Jira`처럼 너무 크고 무거운 기업용 협업툴은 아니다
+- `Linear`처럼 상태 전이와 워크플로우가 깔끔한 구조를 참고한다
+- 실제 구현 범위는 개인용 `project/task manager` 수준으로 제한한다
+
+이 도메인이 좋은 이유는 다음과 같다.
+
+- 개인 사이드 프로젝트로 만들 수 있을 만큼 범위가 현실적이다
+- 직접 매일 사용할 수 있어 요구사항이 계속 생긴다
+- 단순 TODO를 넘어서면 상태 전이와 일관성 경계가 자연스럽게 등장한다
+- Value Object, Entity, Aggregate, Domain Service, Repository를 모두 설명하기 좋다
+- 프론트엔드 적용 예제로도 이어 가기 쉽다
+
+## 본편 예제의 핵심 개념
+
+작은 범위로 시작하되, DDD 설명에 필요한 개념은 충분히 담는다.
+
+- `Task`
+- `Project`
+- `Sprint`
+- `TaskStatus`
+- `Priority`
+- `TaskTitle`
+- `DueDate`
+- `Assignee`
+
+## 본편 예제에서 다루기 좋은 규칙
+
+아래 같은 규칙이 있으면 더 이상 단순 CRUD가 아니라, 도메인 모델링이 필요한 문제가 된다.
+
+- `Task`는 `Todo -> InProgress -> Done` 같은 상태 전이를 가진다
+- 완료된 `Project`에는 새 `Task`를 추가할 수 없다
+- 같은 `Sprint` 안에서 진행 중인 `Task` 수에 제한을 둘 수 있다
+- 높은 우선순위의 `Task`는 `DueDate` 없이 생성할 수 없게 할 수 있다
+- 선행 `Task`가 끝나지 않으면 다음 `Task`를 시작할 수 없게 할 수 있다
+- 특정 역할이 아니면 승인 단계를 건너뛸 수 없게 할 수 있다
+
+## DDD Building Block 후보
+
+### Value Object
+
+- `TaskTitle`
+- `TaskStatus`
+- `Priority`
+- `DueDate`
+- `ProjectName`
+
+### Entity
+
+- `Task`
+- `Project`
+- `Sprint`
+- `Member`
+
+### Aggregate
+
+- `Project` Aggregate
+- 내부에 `Task`를 포함하고 프로젝트 차원의 규칙을 함께 관리
+
+### Domain Service
+
+- 담당자 배정 정책
+- 우선순위 자동 조정 정책
+- 스프린트 계획 계산
+
+### Repository
+
+- `ProjectRepository`
+- `TaskRepository`
+- `SprintRepository`
+
+## 본편 전개 메모
+
+- 초반 Building Block 설명은 `TaskTitle`, `TaskStatus`, `Priority`, `DueDate` 같은 작은 Value Object부터 시작한다
+- 그다음 `Task`를 Entity로 설명한다
+- 이후 `Project`를 Aggregate Root로 설명하면서 일관성 경계를 다룬다
+- Domain Service에서는 담당자 배정이나 우선순위 정책처럼 여러 객체에 걸친 규칙을 다룬다
+- Repository와 Application Service에서는 이 도메인을 실제 유스케이스로 연결한다
+- 프론트엔드 챕터에서는 이 도메인을 화면 상태와 어떻게 분리해 운영할지 설명한다
+
 ## 다음 작업
 
 ### 1. Ch.6 작성
