@@ -163,7 +163,7 @@ AI가 코드를 잘 짜는 시대에 개발자의 역할은 도메인 지식과 
 
 ```
 src/content/posts/xdd-ch01-framework-to-domain.md
-src/content/posts/xdd-ch02-before-after.md
+src/content/posts/xdd-ch02-same-requirements-different-code.md
 src/content/posts/xdd-ch03-value-object.md
 ...
 ```

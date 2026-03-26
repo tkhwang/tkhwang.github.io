@@ -13,7 +13,7 @@ Ch.2는 시리즈의 **사고방식 전환 챕터**. Ch.1에서 서사로 논증
 
 ## 출력 파일
 
-- **파일명**: `src/content/posts/xdd-ch02-before-after.md`
+- **파일명**: `src/content/posts/xdd-ch02-same-requirements-different-code.md`
 - **Frontmatter**:
 
 ```yaml
