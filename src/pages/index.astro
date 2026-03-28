@@ -2,7 +2,6 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import NavWrapper from "@components/NavigationWrapper.astro";
 import Heading from "@components/Heading.astro";
-import LatestPosts from "@components/LatestPosts.astro";
 import Featured from "@components/Featured.astro";
 import RecentProjects from "@components/RecentProjects.astro";
 import WorkExperiences from "@components/WorkExperiences.astro";
@@ -47,19 +46,8 @@ const pageTitle: string = "Where Code Meets Design";
       </div>
       <Featured />
     </section>
-    <section>
-      <div class="section-divider">
-        <div class="section-divider__title">
-          <span aria-hidden="true">📰</span>
-          <Heading
-            title="최신 글"
-            heading="3"
-          />
-        </div>
-        <div class="section-divider__line" aria-hidden="true"></div>
-        <a class="section-divider__link" href="/blog/">전체 글 보기</a>
-      </div>
-      <LatestPosts />
+    <section class="blog-link-section">
+      <a href="/blog/" class="blog-link">전체 글 보기 →</a>
     </section>
     <!-- <hr />
     <section>
@@ -148,6 +136,24 @@ const pageTitle: string = "Where Code Meets Design";
 
   .section-divider__link:hover,
   .section-divider__link:focus {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .blog-link-section {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .blog-link {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .blog-link:hover,
+  .blog-link:focus {
     color: inherit;
     text-decoration: underline;
   }

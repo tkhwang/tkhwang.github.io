@@ -3,103 +3,53 @@ interface Props {
   url: string;
   title: string;
   pubDate: Date;
-  description: string;
+  description?: string;
   tags?: string[];
 }
 
-const { url, title, pubDate, description, tags: normalizedTags = [] } = Astro.props;
+const { url, title, pubDate } = Astro.props;
+
+const yyyy = pubDate.getFullYear();
+const mm = String(pubDate.getMonth() + 1).padStart(2, '0');
+const dd = String(pubDate.getDate()).padStart(2, '0');
+const dateStr = `${yyyy}-${mm}-${dd}`;
 ---
 
 <li class="post-item">
-  <div class="post-meta">
-    <small class="post-date">
-      {pubDate.toLocaleDateString("ko-KR", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-      })}
-    </small>
-    {normalizedTags.length > 0 ? (
-      <div class="post-tags">
-        {
-          normalizedTags.map((tag) => (
-            <a href={`/tags/${encodeURIComponent(tag)}/`} class="tag-chip">
-              {tag}
-            </a>
-          ))
-        }
-      </div>
-    ) : null}
-  </div>
-  <a href={url} class="post-title">{title}</a>
-  <p class="post-description">{description}</p>
-
+  <a href={url} class="post-link">
+    <span class="post-title">{title}</span>
+    <span class="post-date">{dateStr}</span>
+  </a>
 </li>
 
 <style>
   .post-item {
-    margin: 0 0 1.5rem;
+    padding: 0.35rem 0;
+    list-style: none;
   }
 
-  .post-item:last-child {
-    margin-bottom: 0;
-  }
-
-  .post-title,
-  .post-title:visited {
+  .post-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
     color: inherit;
     text-decoration: none;
-    font-weight: 700;
-    display: inline-block;
-    margin-bottom: 0.35rem;
   }
 
-  .post-title:hover,
-  .post-title:focus {
+  .post-link:hover .post-title,
+  .post-link:focus .post-title {
     text-decoration: underline;
   }
 
-  .post-description {
-    margin: 0 0 0.35rem;
-    color: var(--color-text-muted);
+  .post-title {
+    font-weight: 700;
   }
 
   .post-date {
-    margin: 0;
-    font-size: 0.95rem;
+    flex-shrink: 0;
+    font-size: 0.875rem;
     color: var(--pico-muted-color);
-  }
-
-  .post-meta {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin-top: 0.35rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .post-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-  }
-
-  .tag-chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.2rem 0.65rem;
-    border-radius: 999px;
-    background-color: var(--color-tag-bg);
-    color: var(--color-tag-text);
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-
-  .tag-chip:hover,
-  .tag-chip:focus {
-    background-color: var(--color-tag-bg-hover);
+    font-variant-numeric: tabular-nums;
   }
 </style>
