@@ -13,7 +13,7 @@ const featuredPosts = (await getCollection("posts"))
   .slice(0, 5);
 ---
 
-<ul>
+<ul class="post-list">
   {
     featuredPosts.map((post) => (
         <BlogPost
