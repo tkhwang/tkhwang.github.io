@@ -184,7 +184,7 @@ AI가 만든 초안을 그대로 쓰는 것이 아닙니다. **그 초안을 읽
 | 순서 | 단계 | 질문 | 하는 일 | 산출물 | 시점 |
 |---|---|---|---|---|---|
 | 1 | 문제 정의 | Why | 풀려는 문제와 요구사항을 자연어로 적는다 | 요구사항 목록 | 이번 글 ✅ |
-| 2 | PRD 작성 | What | 요구사항을 구조화된 문서로 정리한다 | [`docs/0watchable.PRD.md`](../../docs/0watchable.PRD.md) | 이번 글 ✅ |
+| 2 | PRD 작성 | What | 요구사항을 구조화된 문서로 정리한다 | [`docs/watchable.PRD.md`](../../docs/watchable.PRD.md) | 이번 글 ✅ |
 | 3 | DDD 전략적 설계 | Where | Bounded Context를 나누고 핵심 컨텍스트를 고른다 | Ch.6의 도메인 분해 결과 | Ch.6 |
 | 4 | DDD 전술적 설계 | How | Aggregate → Entity → Value Object를 식별한다 | Ch.6의 객체 후보 목록 | Ch.6 |
 | 5 | SDD | Spec | 객체의 규칙을 AI와 함께 Spec으로 명세한다 | `docs/specs/{building-block}/{name}.md` | Ch.7 |
@@ -194,10 +194,10 @@ AI가 만든 초안을 그대로 쓰는 것이 아닙니다. **그 초안을 읽
 
 ```
 docs/
-├── 0watchable.PRD.md             ← 요구사항 정리 (DDD 무관)
-├── 1xdd-series-guide.DESIGN.md   ← 시리즈 설계/진행 현황/다음 작업
+├── watchable.PRD.md             ← 요구사항 정리 (DDD 무관)
+├── xdd-series-guide.DESIGN.md   ← 시리즈 설계/진행 현황/다음 작업
 └── specs/
-    └── value-object/
+    └── value-objects/
         ├── content-url.md        ← 개별 Building Block Spec (Ch.7~)
         ├── tag.md
         └── ...
@@ -227,41 +227,28 @@ docs/
 
 ---
 
-**한 줄 요약**
+## Bounded Context
 
-숏폼 영상을 무의미하게 소비하는 대신, 미리 좋은 콘텐츠를 북마크해두고 여유가 생기면 의도적으로 소비하는 습관을 만드는 개인용 도구.
+### 콘텐츠 북마크/소비 추적 (핵심)
+- 콘텐츠 등록, 상태 전이, 완료 후 평가
 
-**문제**
+### 통계/인사이트
+- 주간/월간 소비량 집계, 유형별 분포, 장르 선호도
 
-- 시간이 남으면 YouTube Shorts, 릴스 같은 숏폼 영상을 무의미하게 소비하게 된다
-- 평소 좋은 콘텐츠를 발견해도 나중에 찾기 어렵다
-- 내가 어떤 콘텐츠를 얼마나 소비하는지 파악하기 어렵다
+### 추천
+- 소비 이력 기반 다음 콘텐츠 제안
 
-**핵심 기능**
+## Content Aggregate
 
-1. **콘텐츠 북마크 & 상태 전이** — 좋은 콘텐츠를 즉시 북마크하고, `Bookmarked → InProgress → Done` 순서로 소비 상태를 관리한다
-2. **소비 통계 & 인사이트** — 주간/월간 소비량, 미디어 유형별 분포 등 소비 패턴을 보여준다
-3. **소비 이력 기반 추천** — 소비 이력을 바탕으로 다음에 볼 콘텐츠를 제안한다
-
-**대상 범위**
-
-미디어 유형을 가리지 않는다 — 영상, 블로그 글, 기술 아티클, 팟캐스트, 트윗 스레드, 뉴스레터 등.
-
-**비즈니스 규칙**
-
-- 콘텐츠는 `Bookmarked → InProgress → Done` 상태 전이를 가진다
-- 완료된 콘텐츠에만 평가(`Rating`)를 부여할 수 있다
-- URL은 유효해야 하고 정규화 규칙이 있다
-- 태그는 정규화(소문자, 트림)와 길이 제한이 있다
-
-**도메인 개념**
-
-- `Content`: 북마크된 콘텐츠 (식별 + 상태 전이 + 생애주기)
-- `ContentUrl`: URL 유효성, 정규화
-- `MediaType`: video, article, podcast, tweet, newsletter, other
-- `Tag`: 커스텀 태그
-- `ConsumptionStatus`: Bookmarked → InProgress → Done
-- `Rating`: 소비 완료 후 평가
+| 수준 | 이름 | 역할 |
+|---|---|---|
+| Aggregate | Content | 상태 전이와 평가 규칙의 일관성 경계 |
+| Entity | Content | 식별자와 생명주기를 가진 주체 |
+| Value Object | ContentUrl | URL 검증과 정규화 |
+| Value Object | MediaType | 허용 값 집합 |
+| Value Object | Tag | 정규화와 길이 제한 |
+| Value Object | ConsumptionStatus | 상태와 전이 규칙 |
+| Value Object | Rating | 평가 범위 |
 ```
 
 작업이 끝날 때마다 이 목록을 갱신합니다. TDD까지 마치면 체크박스를 완료로 바꿉니다. 형식이 어떻든 이런 진행 현황 문서가 있으면 **설계 결과 + 작업 현황**을 함께 관리할 수 있습니다.

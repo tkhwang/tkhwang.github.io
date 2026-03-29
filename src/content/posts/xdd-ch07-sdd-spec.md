@@ -32,6 +32,10 @@ SDD는 단순합니다. **구현 전에 Spec을 먼저 정의한다.**
 
 Ch.6에서 이미 객체 후보를 정했기 때문에, 이제는 그 후보 중 작은 것부터 골라 규칙을 좁게 다듬을 수 있습니다. 이번 글에서는 `ContentUrl`, `Tag`, `ConsumptionStatus`를 예로 들겠습니다.
 
+여기서 `design`과 `specs`를 구분해 두면 더 깔끔합니다. `design`은 Ch.6처럼 경계와 객체 후보를 정리하는 문서이고, `specs`는 그중 실제로 구현할 객체의 규칙을 적는 문서입니다. 즉 DDD Building Block 단위로 Spec을 남기되, 설계 문서와는 역할을 분리하는 것입니다.
+
+이번 글의 범위에서는 아직 Value Object부터 시작하는 단계이므로, `docs/specs/value-objects/`만 먼저 사용하면 충분합니다. 이후 Entity나 Aggregate를 구현하는 단계로 가면 그때 `docs/specs/entities/`, `docs/specs/aggregates/`처럼 확장하면 됩니다.
+
 ## 왜 이 방식이 AI 시대에 강력한가
 
 ### AI는 Spec의 빈틈을 먼저 드러낸다
@@ -65,7 +69,7 @@ Spec은 곧 context입니다. AI의 기억에 의존하지 않고, 문서화된 
 
 특히 객체가 많아질수록 이 장점이 커집니다. `ConsumptionStatus` 규칙을 바꾸면 `Content`의 행동과 `Rating` 허용 조건까지 함께 영향을 받을 수 있습니다. 이때 관련 Spec들을 함께 보면, 변경 영향과 정합성을 더 쉽게 점검할 수 있습니다.
 
-### DDD Building Block 단위라서 Spec이 쓰기 쉽다
+### DDD 구성하는 Building Block 단위라서 Spec이 쓰기 쉽다
 
 큰 서비스 전체의 Spec은 쓰기 어렵습니다. 하지만 작은 Value Object 하나의 Spec은 훨씬 좁고 명확합니다. DDD가 도메인을 작은 Building Block으로 나누기 때문에, 각 단위에 대해 Spec을 쓰는 흐름이 자연스럽습니다.
 
@@ -241,9 +245,21 @@ Spec은 곧 context입니다. AI의 기억에 의존하지 않고, 문서화된 
 
 대화의 산출물은 프로젝트 안에 파일로 남기는 편이 좋습니다. 아래는 **예시 프로젝트 구조**입니다.
 
+- `designs`: PRD를 바탕으로 정리한 세부 설계 문서 모음
+- `specs`: 실제 구현 전에 객체 단위 규칙을 적는 명세 문서 모음
+
 ```text
 project/
 ├── docs/
+│   ├── watchable.PRD.md
+│   ├── watchable.DESIGN.md
+│   ├── designs/                  # 필요할 때 세부 설계 문서 추가
+│   │   ├── contexts/
+│   │   │   └── bookmark-tracking.md
+│   │   ├── aggregates/
+│   │   │   └── content.md
+│   │   └── flows/
+│   │       └── consumption-flow.md
 │   └── specs/
 │       └── value-objects/
 │           ├── content-url.md
@@ -263,13 +279,17 @@ project/
             └── consumption-status.test.ts
 ```
 
-예시 프로젝트에서는 `docs/specs/value-objects/`에 Spec, `src/domain/value-objects/`에 구현, `tests/domain/value-objects/`에 테스트를 둘 수 있습니다. Value Object부터 시작하는 단계에서는 이런 구조가 특히 직관적입니다. Spec을 수정하면 테스트를 수정하고, 테스트를 수정하면 구현을 수정하는 흐름이 디렉토리 구조에서도 드러납니다.
+예시 프로젝트에서는 `docs/watchable.PRD.md`에 요구사항, `docs/watchable.DESIGN.md`에 기본 상위 설계 결과를 두고, `docs/specs/value-objects/`에 Spec, `src/domain/value-objects/`에 구현, `tests/domain/value-objects/`에 테스트를 둘 수 있습니다. 이렇게 두면 시리즈의 흐름도 그대로 드러납니다. PRD에서 출발해 DESIGN으로 분해하고, 그다음 개별 객체의 Spec을 만들고, 마지막에 테스트와 구현으로 내려가는 구조입니다.
+
+필요한 경우에는 `docs/designs/` 아래에 세부 디자인 문서를 더 추가해도 됩니다. 예를 들어 `contexts/`에는 Bounded Context 분해, `aggregates/`에는 Aggregate 구조, `flows/`에는 주요 흐름이나 화면 흐름을 둘 수 있습니다. 다만 기본 출발점은 여전히 `watchable.DESIGN.md` 하나로 두고, 세부 문서는 그 내용을 보완하거나 확장하는 용도로 쓰는 편이 관리하기 쉽습니다.
+
+물론 실제 저장소에서는 파일명이 조금 다를 수 있습니다. 중요한 것은 이름 자체보다 역할입니다. 요구사항은 PRD에, 상위 설계는 DESIGN에, 구현 전 규칙은 `specs`에 남기면 각 문서의 책임이 섞이지 않습니다. Spec을 수정하면 테스트를 수정하고, 테스트를 수정하면 구현을 수정하는 흐름도 디렉토리 구조에서 바로 드러납니다.
 
 ### 왜 객체별로 Spec을 나누는가
 
 이 구조를 추천하는 이유는 DDD의 각 Building Block이 저마다 **주체적인 규칙과 책임**을 가지기 때문입니다. `ContentUrl`, `Tag`, `ConsumptionStatus`처럼 작은 Value Object도 각각 따로 확인해야 할 생성 규칙, 불변 조건, 동등성이 있습니다.
 
-이후 `Entity`, `Aggregate`, `Domain Service`로 넘어가면 각 객체가 책임지는 요구사항과 기능은 더 분명하게 나뉘게 됩니다. 그래서 DDD로 설계한 객체들은 가능하면 **Building Block마다 하나의 Spec**을 두고 관리하는 편이 좋습니다. 하나의 큰 문서 안에 여러 객체의 규칙을 섞어 두면, 나중에 수정할 때 어떤 규칙이 어느 객체의 책임인지 흐려지기 쉽습니다.
+이후 `Entity`, `Aggregate`, `Domain Service`로 넘어가면 각 객체가 책임지는 요구사항과 기능은 더 분명하게 나뉘게 됩니다. 그래서 DDD로 설계한 객체들은 가능하면 **Building Block마다 하나의 Spec**을 두고 관리하는 편이 좋습니다. 지금은 `value-objects/`부터 시작하지만, 나중에는 `entities/`, `aggregates/` 같은 디렉토리로 자연스럽게 확장할 수 있습니다. 하나의 큰 문서 안에 여러 객체의 규칙을 섞어 두면, 나중에 수정할 때 어떤 규칙이 어느 객체의 책임인지 흐려지기 쉽습니다.
 
 반대로 객체별로 Spec을 분리해 두면, 해당 객체의 요구사항과 기능을 독립적으로 검토하고, 테스트와 구현도 같은 단위로 맞춰 가기가 쉬워집니다. 각 DDD Building Block마다 `Spec -> Test -> 구현`이 한 짝으로 대응하기 때문에, 나중에 특정 객체를 다시 이해하거나 context를 복원할 때도 훨씬 유리합니다.
 
