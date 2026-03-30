@@ -295,4 +295,5 @@ class Content extends AggregateRoot {
 1. Ch.5: 문제를 정의하고 요구사항을 PRD로 정리한다
 2. 이번 글: PRD를 DDD 관점에서 분해하고 객체 후보를 정한다
 3. 다음 글: 작은 Value Object의 규칙을 AI와 함께 Spec으로 정리한다
-4. Ch.8: 그 Spec을 TDD로 구현한다
+4. Ch.8: 그 Spec에서 테스트 케이스를 뽑는다
+5. Ch.9: 그 테스트를 기준으로 구현한다

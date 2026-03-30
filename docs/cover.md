@@ -20,7 +20,7 @@ AI 효과를 극대화하는 SDD,TDD,DDD로 만드는 견고한 소프트웨어
   Ch.5  — 요구사항에서 PRD 정의하기 — 본편 도메인 소개, PRD 작성
   Ch.6  — PRD에서 도메인 객체 뽑아내기 — DDD top-down 설계 (BC → Aggregate → Entity → VO)
   Ch.7  — AI와 함께 Spec 정의하기 — 콘텐츠 도메인 Value Object SDD
-  Ch.8  — Spec을 TDD로 구현하기 — 콘텐츠 도메인 Value Object TDD
+  Ch.8  — Spec에서 테스트 케이스 뽑기 — TDD의 첫 단계
 
 
 ### Part 2 — DDD Building Blocks 상세
@@ -28,7 +28,7 @@ AI 효과를 극대화하는 SDD,TDD,DDD로 만드는 견고한 소프트웨어
   본편 도메인(Watchable)을 기준으로, Ch.6에서 잡은 상위 설계를 바탕으로
   각 Building Block을 한 챕터에서 개념 + SDD + TDD로 완결한다.
 
-  Ch.9  — Value Object — 개념 심화 + SDD + TDD
+  Ch.9  — Value Object — 개념 심화 + 테스트 코드 작성 + Red → Green → Refactor
   Ch.10 — Entity — 식별자, 생명주기, 상태 전이
   Ch.11 — Aggregate — 일관성 경계, Aggregate Root
   Ch.12 — Domain Service — 여러 객체에 걸친 규칙
