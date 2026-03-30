@@ -12,7 +12,7 @@ tags: ["ddd", "typescript", "ai", "architecture", "sdd"]
 
 이 글은 **[SDD+TDD+DDD] 시리즈**의 여섯 번째 글입니다. <br />
 
-Ch.5에서는 콘텐츠 북마크와 소비 추적 도메인의 문제를 정의하고, 요구사항을 PRD([`docs/watchable.PRD.md`](../../docs/watchable.PRD.md))로 정리했습니다. 이제 남은 질문은 **이 PRD를 DDD 관점에서 어떻게 분해할 것인가**입니다.
+Ch.5에서는 콘텐츠 북마크와 소비 추적 도메인의 문제를 정의하고, 요구사항을 PRD([`docs/0_PRD.md`](../../docs/0_PRD.md))로 정리했습니다. 이제 남은 질문은 **이 PRD를 DDD 관점에서 어떻게 분해할 것인가**입니다.
 
 ## 설계는 Top-Down으로, 구현은 Bottom-up 으로
 
