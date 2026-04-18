@@ -28,7 +28,7 @@ const pageTitle: string = "Blog";
         {
           orderedPosts.map((post) => (
             <BlogPost
-              url={`/posts/${post.slug}/`}
+              url={`/posts/${post.id}/`}
               title={post.data.title}
               pubDate={post.data.pubDate}
               description={post.data.description}

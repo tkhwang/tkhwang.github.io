@@ -10,13 +10,13 @@ image:
 tags: ["ai", "mastra.ai"]
 ---
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/mastra-ai-101.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/mastra-ai-101.png)
 
 요즘 [mastra.ai](https://mastra.ai)를 보고 있는데, 101 강의가 동영상 강의가 아니라 **MCP 이용해서 학습**하도록 되어 있어서 신기하기도 하고 내용도 볼 겸해서 정리해봅니다.
 
 ---
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/mastra-ai-101-lecture1.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/mastra-ai-101-lecture1.png)
 
 ## Step 1: Getting Started with Mastra
 
@@ -136,7 +136,7 @@ export const mastra = new Mastra({
 
 추가하면 playground 에서 agent 추가되어 보임.
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/mastra-ai-101-step8.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/mastra-ai-101-step8.png)
 
 ## Step 9: testing your agent
 
@@ -256,7 +256,7 @@ export const financialAgent = new Agent({
 
 마찬가지로 playground 에서 추가된 tool 확인 가능
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/mastra-ai-101-step11.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/mastra-ai-101-step11.png)
 
 ## Step16: adding memory to agent
 
@@ -311,7 +311,7 @@ Next ideas:
 
 ---
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/mastra-ai-101-lecture2.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/mastra-ai-101-lecture2.png)
 
 ## Step 1: Introduction to MCP
 
@@ -671,7 +671,7 @@ By updating your agent's instructions to include information about these memory 
 
 ---
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/mastra-ai-101-lecture3.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/mastra-ai-101-lecture3.png)
 
 ## Step 1: Understanding Memory in Mastra
 
@@ -1091,7 +1091,7 @@ By following these best practices, you can create memory-enhanced agents that pr
 
 ---
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/mastra-ai-101-lecture4.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/mastra-ai-101-lecture4.png)
 
 ## Step1: introduction to workflows
 

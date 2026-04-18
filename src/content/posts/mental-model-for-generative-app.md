@@ -10,7 +10,7 @@ image:
 tags: ["ai"]
 ---
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/02/mental-model-generative-app.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/02/mental-model-generative-app.png)
 
 요즘 생성형 AI 를 이용한 서비스를 많이 고민하게 되는데... <br />
 [Full-Stack AI for Web Developers](https://www.manning.com/books/full-stack-ai-for-web-developers) 책에서 이를 위한 멘탈 모델이 정리된 것이 있어서 적어봅니다.

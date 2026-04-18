@@ -105,20 +105,20 @@ Guardrails 는 에이전트의 입출력에 대해서 sanitizing 함으로써 ja
 
 새로운 path를 생성하게 됩니다.
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/mastra-ai-branching.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/mastra-ai-branching.png)
 
 #### Chaining `.then()`
 
 - 이전 작업에 이어서 다음 작업을 수행하는 경우
 - Chain 의 각 작업은 이전 스텝이 완료 되기를 기다리고, context를 통해서 이전 작업의 결과를 액세스합니다.
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/mastra-ai-step.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/mastra-ai-step.png)
 
 #### Merging
 
 다양한 타스크를 수행하기 위해서 branching path 한 이후에는 이들 결과를 하나로 모으기 위해서 merging 필요함.
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/mastra-ai-merging.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/mastra-ai-merging.png)
 
 #### Conditions
 
@@ -166,7 +166,7 @@ Backend update 를 즉각적으로 frontend update 되도록 할 것.
 
 ## PART 6: MULTI-AGENT SYSTEMS
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/mastra-ai-multi-agents.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/mastra-ai-multi-agents.png)
 
 ### 22. AGENT SUPERVISOR
 
