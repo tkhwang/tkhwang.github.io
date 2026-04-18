@@ -17,7 +17,7 @@ tags: ["ai", "mastra.ai"]
 ## TL;DR
 
 - 입력 : "AI가 너무 빠르게 바뀌어서 힘들어"
-- 출력 : ![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/mastra-memo-generation.jpg?raw=true)
+- 출력 : ![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/mastra-memo-generation.jpg)
 
 ## Agent 정의
 

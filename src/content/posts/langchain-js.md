@@ -17,7 +17,7 @@ orielly 책 [러닝 랭체인](https://www.aladin.co.kr/shop/wproduct.aspx?ItemI
 
 ### LangChain diagram
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/langchain-example-diagram.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/langchain-example-diagram.png)
 
 ### Import
 

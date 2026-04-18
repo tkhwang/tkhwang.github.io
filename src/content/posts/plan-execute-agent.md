@@ -52,7 +52,7 @@ Observation: The current score is 24-21
 
 ## 1. Plan-And-Execute
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/plan-and-execute.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/plan-and-execute.png)
 
 Wang 외 연구진의 [Plan-and-Solve Prompting 논문](https://arxiv.org/abs/2305.04091?ref=blog.langchain.com)과 Yohei Nakajima의 [BabyAGI 프로젝트](https://github.com/yoheinakajima/babyagi?ref=blog.langchain.com)를 느슨하게 기반으로 한 이 단순한 아키텍처는 플래닝 에이전트 아키텍처의 대표적인 예입니다.
 이 아키텍처는 두 가지 기본 구성 요소로 이루어져 있습니다:
@@ -70,7 +70,7 @@ Wang 외 연구진의 [Plan-and-Solve Prompting 논문](https://arxiv.org/abs/23
 이는 플래너의 출력에서 **변수 할당(variable assignment)** 을 허용함으로써 구현됩니다.
 아래는 해당 에이전트 설계의 다이어그램입니다.
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/rewoo.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/rewoo.png)
 
 플래너는 "Plan(추론)"과 "E#" 라인이 교차된 계획 리스트(plan list)를 생성합니다.
 예를 들어, 사용자의 질문이 **"올해 슈퍼볼 참가 쿼터백들의 통계는 무엇인가요?"** 라면, 플래너는 다음과 같은 계획을 생성할 수 있습니다.
@@ -99,7 +99,7 @@ E5: Search[Stats for #E3]
 
 ## 3. LLMCompiler
 
-![img](https://github.com/tkhwang/tkhwang-etc/blob/master/img/2025/08/llm-compiler-1.png?raw=true)
+![img](https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2025/08/llm-compiler-1.png)
 
 Kim 외 연구진의 [LLMCompiler](https://arxiv.org/abs/2312.04511?ref=blog.langchain.com)는 앞서 설명한 plan-and-execute 및 ReWOO 에이전트, 심지어 OpenAI의 **병렬 도구 호출(parallel tool calling)** 보다도 작업 실행 속도를 더욱 향상시키기 위해 설계된 에이전트 아키텍처입니다.
 
