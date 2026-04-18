@@ -22,6 +22,7 @@ const featuredPosts = (await getCollection("posts"))
           pubDate={post.data.pubDate}
           description={post.data.description}
           tags={post.data.tags}
+          variant="editorial"
         />
     ))
   }
