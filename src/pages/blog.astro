@@ -9,7 +9,9 @@ const orderedPosts = allPosts.sort(
   (a, b) =>
     new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
 );
-const pageTitle: string = "Blog";
+const pageTitle: string = "전체 글";
+const pageDescription =
+  "공부하고 정리한 글들을 시간순으로 모아 둔 아카이브입니다. 기술, AI, 개발 문화와 설계에 대한 기록을 담습니다.";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -17,13 +19,17 @@ const pageTitle: string = "Blog";
     <NavWrapper />
   </header>
   <hr />
-  <main class="container">
-    <section>
-      <hgroup>
-        <h1>{pageTitle}</h1>
-      </hgroup>
+  <main class="container blog-list-page">
+    <section class="blog-list-hero">
+      <p class="blog-breadcrumb">
+        <a href="/">홈</a>
+        <span aria-hidden="true">/</span>
+        <span>{pageTitle}</span>
+      </p>
+      <h1>{pageTitle}</h1>
+      <p class="blog-intro">{pageDescription}</p>
     </section>
-    <section>
+    <section class="blog-list-section">
       <ul class="post-list">
         {
           orderedPosts.map((post) => (
@@ -33,6 +39,7 @@ const pageTitle: string = "Blog";
               pubDate={post.data.pubDate}
               description={post.data.description}
               tags={post.data.tags}
+              variant="editorial"
             />
           ))
         }
@@ -40,3 +47,74 @@ const pageTitle: string = "Blog";
     </section>
   </main>
 </BaseLayout>
+
+<style>
+  .blog-list-page {
+    max-width: min(900px, 92vw);
+    padding-bottom: 2rem;
+  }
+
+  .blog-list-hero {
+    margin-bottom: 0.95rem;
+  }
+
+  .blog-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0 0 0.85rem;
+    color: #6b7280;
+    font-size: 0.84rem;
+    font-weight: 500;
+  }
+
+  .blog-breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .blog-breadcrumb a:hover,
+  .blog-breadcrumb a:focus {
+    text-decoration: underline;
+  }
+
+  .blog-list-hero h1 {
+    margin: 0;
+    font-size: clamp(1.7rem, 2.8vw, 2.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    font-weight: 720;
+  }
+
+  .blog-intro {
+    max-width: 52rem;
+    margin: 0.68rem 0 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+    line-height: 1.52;
+  }
+
+  .blog-list-section {
+    margin-top: 0.4rem;
+  }
+
+  @media (max-width: 720px) {
+    .blog-list-page {
+      max-width: 100%;
+    }
+
+    .blog-list-hero {
+      margin-bottom: 0.8rem;
+    }
+
+    .blog-list-hero h1 {
+      font-size: clamp(1.58rem, 8vw, 1.95rem);
+    }
+
+    .blog-intro {
+      margin-top: 0.7rem;
+      font-size: 0.86rem;
+      line-height: 1.48;
+    }
+  }
+</style>

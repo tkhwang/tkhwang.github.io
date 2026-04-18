@@ -11,6 +11,8 @@ const featuredPosts = (await getCollection("posts"))
       new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
   );
 const pageTitle: string = "추천 글";
+const pageDescription =
+  "블로그에서 오래 남길 만한 글만 골라 묶어 둔 목록입니다. 설계, 테스트, AI 에이전트와 같은 주제를 중심으로 선별했습니다.";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -18,16 +20,19 @@ const pageTitle: string = "추천 글";
     <NavWrapper />
   </header>
   <hr />
-  <main class="container">
-    <section>
-      <hgroup>
-        <h1>{pageTitle}</h1>
-        <p>블로그에서 선별된 추천 글입니다.</p>
-      </hgroup>
+  <main class="container featured-list-page">
+    <section class="featured-list-hero">
+      <p class="featured-breadcrumb">
+        <a href="/">홈</a>
+        <span aria-hidden="true">/</span>
+        <span>{pageTitle}</span>
+      </p>
+      <h1>{pageTitle}</h1>
+      <p class="featured-intro">{pageDescription}</p>
     </section>
     {
       featuredPosts.length > 0 ? (
-        <section>
+        <section class="featured-list-section">
           <ul class="post-list">
             {
               featuredPosts.map((post) => (
@@ -37,6 +42,7 @@ const pageTitle: string = "추천 글";
                   pubDate={post.data.pubDate}
                   description={post.data.description}
                   tags={post.data.tags}
+                  variant="editorial"
                 />
               ))
             }
@@ -50,3 +56,70 @@ const pageTitle: string = "추천 글";
     }
   </main>
 </BaseLayout>
+
+<style>
+  .featured-list-page {
+    max-width: min(900px, 92vw);
+    padding-bottom: 2rem;
+  }
+
+  .featured-list-hero {
+    margin-bottom: 0.95rem;
+  }
+
+  .featured-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0 0 0.85rem;
+    color: #6b7280;
+    font-size: 0.84rem;
+    font-weight: 500;
+  }
+
+  .featured-breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .featured-breadcrumb a:hover,
+  .featured-breadcrumb a:focus {
+    text-decoration: underline;
+  }
+
+  .featured-list-hero h1 {
+    margin: 0;
+    font-size: clamp(1.7rem, 2.8vw, 2.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    font-weight: 720;
+  }
+
+  .featured-intro {
+    max-width: 52rem;
+    margin: 0.68rem 0 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+    line-height: 1.52;
+  }
+
+  .featured-list-section {
+    margin-top: 0.4rem;
+  }
+
+  @media (max-width: 720px) {
+    .featured-list-page {
+      max-width: 100%;
+    }
+
+    .featured-list-hero h1 {
+      font-size: clamp(1.58rem, 8vw, 1.95rem);
+    }
+
+    .featured-intro {
+      margin-top: 0.7rem;
+      font-size: 0.86rem;
+      line-height: 1.48;
+    }
+  }
+</style>

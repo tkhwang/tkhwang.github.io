@@ -40,16 +40,19 @@ import ThemeIcon from "./ThemeIcon.astro";
 
   @media screen and (min-width: 1024px) {
     .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
       margin-left: 5em;
-      display: block;
       position: static;
       width: auto;
       background: none;
     }
 
     .nav-links a {
-      display: inline-block;
-      padding: 15px 20px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0;
     }
   }
 </style>
